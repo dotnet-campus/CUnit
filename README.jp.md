@@ -8,7 +8,9 @@
 
 # MSTestEnhancer
 
-命名は非常に難しいと思いませんか？ 特にユニットテストメソッドの命名は？ あなたは良い類義語辞典を持っていない場合、プログラミングに参加しないでください。 ITworld]（https://www.itworld.com/article/2833265/cloud-computing/don-t-go-into-programming-if-you-don-t-have-a-good-thesaurus.html）を参照してください。
+命名は非常に難しいと思いませんか？ 特にユニットテストメソッドの命名は？ 詳細な命名についてはこの記事をお読みください。
+
+[あなたが良いシソーラスを持っていない場合、プログラミングに参加しないでください - ITworld](https://www.itworld.com/article/2833265/cloud-computing/don-t-go-into-programming-if-you-don-t-have-a-good-thesaurus.html)。
 
 MSTestEnhancerは、メソッドの名前を付けずに単体テストを記述するのに役立ちます。
 
