@@ -8,6 +8,11 @@
     <RepositoryUrl>https://github.com/easiwin/MSTestEnhancer.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://easiwin.github.io/mstest-enhancer</PackageProjectUrl>
+    <PackageIconUrl>https://easiwin.github.io/mstest-enhancer/icon.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/easiwin/MSTestEnhancer/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
