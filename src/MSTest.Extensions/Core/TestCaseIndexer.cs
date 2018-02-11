@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
@@ -19,11 +20,22 @@ namespace MSTest.Extensions.Core
         /// <returns>
         /// The test case list of the specified unit test method. If the discovery is not started, then it returns an empty list.
         /// </returns>
-        internal IList<ITestCase> this[MethodInfo method] => this[GetKey(method)];
+        [NotNull]
+        internal IList<ITestCase> this[[NotNull] MethodInfo method]
+        {
+            get
+            {
+                if (method == null) throw new ArgumentNullException(nameof(method));
+                Contract.EndContractBlock();
+
+                return this[GetKey(method)];
+            }
+        }
 
         /// <summary>
         /// Gets all test cases of current unit test method. This method is found through the stack trace.
         /// </summary>
+        [NotNull]
         internal IList<ITestCase> Current => this[GetCurrentTestMethod()];
 
         /// <summary>
@@ -33,10 +45,14 @@ namespace MSTest.Extensions.Core
         /// <returns>
         /// The test case list of the specified unit test method. If the discovery is not started, then it returns an empty list.
         /// </returns>
-        private IList<ITestCase> this[string testKey]
+        [NotNull]
+        private IList<ITestCase> this[[NotNull] string testKey]
         {
             get
             {
+                if (testKey == null) throw new ArgumentNullException(nameof(testKey));
+                Contract.EndContractBlock();
+
                 if (!_testCaseDictionary.TryGetValue(testKey, out var list))
                 {
                     list = new List<ITestCase>();
@@ -52,7 +68,7 @@ namespace MSTest.Extensions.Core
         /// Key: namespace.class.method. <see cref="GetKey"/> can generate it correctly.
         /// Value: All test cases of a specified method. You can get rid of null value by calling Indexer.
         /// </summary>
-        private readonly Dictionary<string, List<ITestCase>> _testCaseDictionary =
+        [NotNull] private readonly Dictionary<string, List<ITestCase>> _testCaseDictionary =
             new Dictionary<string, List<ITestCase>>();
 
         /// <summary>
@@ -60,8 +76,12 @@ namespace MSTest.Extensions.Core
         /// </summary>
         /// <param name="member">The unit test method.</param>
         /// <returns>The unique string that indicates a unit test method.</returns>
-        private static string GetKey(MemberInfo member)
+        [NotNull]
+        private static string GetKey([NotNull] MemberInfo member)
         {
+            if (member == null) throw new ArgumentNullException(nameof(member));
+            Contract.EndContractBlock();
+
             return $"{member.DeclaringType.FullName}.{member.Name}";
         }
 
@@ -69,6 +89,7 @@ namespace MSTest.Extensions.Core
         /// Find the unit test method through current stack trace.
         /// </summary>
         /// <returns>The unit test method that found from stack trace.</returns>
+        [NotNull]
         private static MethodInfo GetCurrentTestMethod()
         {
             var stackTrace = new StackTrace();

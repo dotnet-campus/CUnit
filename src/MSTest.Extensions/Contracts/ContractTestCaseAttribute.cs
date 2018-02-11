@@ -29,7 +29,8 @@ namespace MSTest.Extensions.Contracts
         #region Instance derived from TestMethodAttribute
 
         /// <inheritdoc />
-        public override TestResult[] Execute(ITestMethod testMethod)
+        [NotNull]
+        public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
             var contractTestCases = ContractTest.Method[testMethod.MethodInfo];
             var result = contractTestCases[_testCaseIndex++].Result;
@@ -49,7 +50,8 @@ namespace MSTest.Extensions.Contracts
         /// The parameter array which will be passed into the target unit test method.
         /// We don't need any parameter, so we return an all null array with length equals to test case count.
         /// </returns>
-        public IEnumerable<object[]> GetData(MethodInfo methodInfo)
+        [NotNull]
+        public IEnumerable<object[]> GetData([NotNull] MethodInfo methodInfo)
         {
             methodInfo.Invoke(Activator.CreateInstance(methodInfo.DeclaringType), null);
             var testCaseList = ContractTest.Method[methodInfo];
@@ -63,7 +65,8 @@ namespace MSTest.Extensions.Contracts
         /// <param name="methodInfo">Target unit test method.</param>
         /// <param name="data">The parameter list which was returned by <see cref="GetData"/>.</param>
         /// <returns>The display name of this test case.</returns>
-        public string GetDisplayName(MethodInfo methodInfo, object[] data)
+        [NotNull]
+        public string GetDisplayName([NotNull] MethodInfo methodInfo, [NotNull] object[] data)
         {
             return ContractTest.Method[methodInfo][_testCaseIndex++].Result.DisplayName;
         }

@@ -11,6 +11,7 @@ namespace MSTest.Extensions.Core
         /// <summary>
         /// Get the test result of this test case. This may cause an invoking the action of a test case.
         /// </summary>
+        [NotNull]
         TestResult Result { get; }
     }
 }

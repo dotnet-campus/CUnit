@@ -65,11 +65,11 @@ namespace MSTest.Extensions.Contracts
         /// <summary>
         /// Gets the contract description string for this test case.
         /// </summary>
-        private readonly string _contract;
+        [NotNull] private readonly string _contract;
 
         /// <summary>
         /// Invoke this action to execute this test case with the argument(s).
         /// </summary>
-        private readonly Action<T> _testCase;
+        [NotNull] private readonly Action<T> _testCase;
     }
 }

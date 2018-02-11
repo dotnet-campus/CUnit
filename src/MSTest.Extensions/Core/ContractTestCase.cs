@@ -17,9 +17,10 @@ namespace MSTest.Extensions.Core
         /// </summary>
         /// <param name="contract">The description of a test contract.</param>
         /// <param name="testCase">The action of the which is used to test the contract.</param>
-        internal ContractTestCase(string contract, Action testCase)
+        internal ContractTestCase([NotNull] string contract, [NotNull] Action testCase)
         {
-            _contract = contract;
+            if (testCase == null) throw new ArgumentNullException(nameof(testCase));
+            _contract = contract ?? throw new ArgumentNullException(nameof(contract));
             _testCase = () =>
             {
                 testCase();
@@ -32,10 +33,10 @@ namespace MSTest.Extensions.Core
         /// </summary>
         /// <param name="contract">The description of a test contract.</param>
         /// <param name="testCase">The action of the which is used to test the contract.</param>
-        internal ContractTestCase(string contract, Func<Task> testCase)
+        internal ContractTestCase([NotNull] string contract, [NotNull] Func<Task> testCase)
         {
-            _contract = contract;
-            _testCase = testCase;
+            _contract = contract ?? throw new ArgumentNullException(nameof(contract));
+            _testCase = testCase ?? throw new ArgumentNullException(nameof(testCase));
         }
 
         /// <inheritdoc />
@@ -45,6 +46,7 @@ namespace MSTest.Extensions.Core
         /// Invoke the test case action to get the test result.
         /// </summary>
         /// <returns>The test result of this test case.</returns>
+        [NotNull]
         private TestResult Execute()
         {
             // Prepare the execution.
@@ -85,18 +87,18 @@ namespace MSTest.Extensions.Core
             return result;
         }
 
-        [ContractPublicPropertyName(nameof(Result))]
+        [CanBeNull, ContractPublicPropertyName(nameof(Result))]
         private TestResult _result;
 
         /// <summary>
         /// Gets the action of this test case. Invoke this func will execute the test case.
         /// The returning value of this func will never be null, but it does not mean that it is an async func.
         /// </summary>
-        private readonly Func<Task> _testCase;
+        [NotNull] private readonly Func<Task> _testCase;
 
         /// <summary>
         /// Gets the contract description of this test case.
         /// </summary>
-        private readonly string _contract;
+        [NotNull] private readonly string _contract;
     }
 }
