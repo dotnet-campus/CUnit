@@ -3,12 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSTest.Extensions.Core
 {
     /// <summary>
-    /// 表示在被测单元测试方法中发现的一个测试用例。
+    /// A test case that is discovered from a unit test method.
+    /// A unit test method may have multiple test cases.
     /// </summary>
     internal interface ITestCase
     {
         /// <summary>
-        /// 获取此测试用例的测试结果。
+        /// Get the test result of this test case. This may cause an invoking the action of a test case.
         /// </summary>
         TestResult Result { get; }
     }

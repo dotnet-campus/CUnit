@@ -8,15 +8,15 @@ namespace MSTest.Extensions.Core
 {
     /// <inheritdoc />
     /// <summary>
-    /// 表示在被测单元测试方法中发现的用字符串描述契约形式的测试用例。
+    /// A contract based test case that is discovered from a unit test method.
     /// </summary>
     internal class ContractTestCase : ITestCase
     {
         /// <summary>
-        /// 创建一个字符串描述的契约形式的测试用例。
+        /// Create a new instance of <see cref="ContractTestCase"/> with contract description and an action.
         /// </summary>
-        /// <param name="contract">契约描述。</param>
-        /// <param name="testCase">测试用例方法。</param>
+        /// <param name="contract">The description of a test contract.</param>
+        /// <param name="testCase">The action of the which is used to test the contract.</param>
         internal ContractTestCase(string contract, Action testCase)
         {
             _contract = contract;
@@ -28,10 +28,10 @@ namespace MSTest.Extensions.Core
         }
 
         /// <summary>
-        /// 创建一个字符串描述的契约形式的测试用例。
+        /// Create a new instance of <see cref="ContractTestCase"/> with contract description and an async action.
         /// </summary>
-        /// <param name="contract">契约描述。</param>
-        /// <param name="testCase">测试用例方法。</param>
+        /// <param name="contract">The description of a test contract.</param>
+        /// <param name="testCase">The action of the which is used to test the contract.</param>
         internal ContractTestCase(string contract, Func<Task> testCase)
         {
             _contract = contract;
@@ -42,17 +42,17 @@ namespace MSTest.Extensions.Core
         public TestResult Result => _result ?? (_result = Execute());
 
         /// <summary>
-        /// 执行测试用例并返回测试结果。
+        /// Invoke the test case action to get the test result.
         /// </summary>
-        /// <returns>单元测试结果。</returns>
+        /// <returns>The test result of this test case.</returns>
         private TestResult Execute()
         {
-            // 准备执行环境。
+            // Prepare the execution.
             Exception exception = null;
             var watch = new Stopwatch();
             watch.Start();
 
-            // 执行测试用例。
+            // Execute the test case.
             try
             {
                 _testCase.Invoke().Wait();
@@ -66,7 +66,7 @@ namespace MSTest.Extensions.Core
                 watch.Stop();
             }
 
-            // 返回测试结果。
+            // Return the test result.
             var result = new TestResult
             {
                 DisplayName = _contract,
@@ -89,13 +89,13 @@ namespace MSTest.Extensions.Core
         private TestResult _result;
 
         /// <summary>
-        /// 获取测试用例的用例方法。执行此方法即执行 <see cref="_contract"/> 契约的测试。
-        /// 返回值一定不为 null，但并不表示它一定是异步的委托。
+        /// Gets the action of this test case. Invoke this func will execute the test case.
+        /// The returning value of this func will never be null, but it does not mean that it is an async func.
         /// </summary>
         private readonly Func<Task> _testCase;
 
         /// <summary>
-        /// 获取此契约测试用例的契约描述。
+        /// Gets the contract description of this test case.
         /// </summary>
         private readonly string _contract;
     }
