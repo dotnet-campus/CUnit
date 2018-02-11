@@ -4,42 +4,29 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+// ## How it works?
+// 
+// 1. When the MSTestv2 discover a method which is marked with a `TestMethodAttribute`,
+//    it will search all `Attributes` to find out the one which derived from `ITestDataSource`.
+// 1. The first instance (#1) of `ContractTestCaseAttribute` will be created because it derived from `ITestDataSource`.
+// 1. `GetMethod` of #1 is called:
+//     - Invoke the target unit test method.
+//     - Collect all test cases that are created during the target unit test method invoking.
+//     - Return an empty array with length equals to test case count to the MSTestv2 framework.
+//     - *In this case, `Execute` would be called the same times to that array length.*
+// 1. The second instance (#2) of `ContractTestCaseAttribute` will be created because it derived from `TestMethodAttribute`.
+// 1. `Execute` of #2 and `GetDisplayName` of #1 will be called alternately by the MSTestv2 framework:
+//     - When `Execute` is called, fetch a test case and run it to get the test result.
+//     - When `GetDisplayName` is called, fetch a test case and get the contract description string from it.
+
 namespace MSTest.Extensions.Contracts
 {
     /// <summary>
-    /// 允许在单元测试方法中以 “契约.Test(测试用例)” 的形式来描述测试用例并执行单元测试方法。<para/>
-    /// 方法内的写法为：<para/>
-    /// <code>
-    /// "契约 1".Test(() => { 测试用例 });<para/>
-    /// "契约 2".Test(() =><para/>
-    /// {<para/>
-    ///     // 测试用例<para/>
-    /// });<para/>
-    /// "契约 3".Test(async () => { 测试用例 });<para/>
-    /// </code>
+    /// Enable the unit test writing style of `"contract string".Test(TestCaseAction)`.
     /// </summary>
     public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
-        // ## 工作原理
-        // 
-        // 1. 当单元测试框架发现了一个标记为 TestMethodAttribute 的方法之后，会搜索实现了 ITestDataSource 接口的 Attribute。
-        // 1. 继承自 ITestDataSource 的实例 #1 被创建，GetData 方法被调用：
-        //     - 直接执行一次被测方法；
-        //     - 收集被测方法内所有的 “契约.Test(测试用例)” 的调用；
-        //     - 根据收集到的所有的测试用例个数返回相应个数的空数组给框架。
-        // 1. 继承自 TestMethodAttribute 的实例 #2 被创建。
-        // 1. 实例 #2 的 Execute 方法和实例 #1 的 GetDisplayName 方法被交替调用：
-        //     - Execute 依次取出一个测试用例，并执行；
-        //     - GetDisplayName 依次取出一个测试用例，并获取显示名称。
-
-        /// <summary>
-        /// 每一次 <see cref="Execute"/> 或 <see cref="ITestDataSource.GetDisplayName"/> 方法被执行，
-        /// 都需要从此字段中获取当前正在执行的测试用例序号。
-        /// 由于两个方法分别由两个不同的实例执行，所以两个方法内部都需要独自进行自增。
-        /// </summary>
-        private int _testCaseIndex;
-
-        #region TestMethodAttribute 的实现实例
+        #region Instance derived from TestMethodAttribute
 
         /// <inheritdoc />
         public override TestResult[] Execute(ITestMethod testMethod)
@@ -51,14 +38,18 @@ namespace MSTest.Extensions.Contracts
 
         #endregion
 
-        #region ITestDataSource
+        #region Instance derived from ITestDataSource
 
         /// <summary>
-        /// 当被测方法准备执行时，此方法会被调用以获取测试用例。
+        /// When a unit test method is preparing to run, This method will be called
+        /// to fetch all the test cases of target unit test method.
         /// </summary>
-        /// <param name="methodInfo">准备执行的被测方法。</param>
-        /// <returns>被测方法执行时需要的参数列表。这里永远返回 null 数组，因为不需要参数。</returns>
-        IEnumerable<object[]> ITestDataSource.GetData(MethodInfo methodInfo)
+        /// <param name="methodInfo">Target unit test method.</param>
+        /// <returns>
+        /// The parameter array which will be passed into the target unit test method.
+        /// We don't need any parameter, so we return an all null array with length equals to test case count.
+        /// </returns>
+        public IEnumerable<object[]> GetData(MethodInfo methodInfo)
         {
             methodInfo.Invoke(Activator.CreateInstance(methodInfo.DeclaringType), null);
             var testCaseList = ContractTest.Method[methodInfo];
@@ -66,16 +57,24 @@ namespace MSTest.Extensions.Contracts
         }
 
         /// <summary>
-        /// 每一次执行被测方法后，此方法都会被调用以获取此次被测的测试用例名称。
+        /// Each time after <see cref="Execute"/> is called, this method will be called
+        /// to retrieve the display name of the test case.
         /// </summary>
-        /// <param name="methodInfo">刚刚执行的被测方法。</param>
-        /// <param name="data">刚刚执行被测方法时使用的参数列表。</param>
-        /// <returns>此次测试用例的显示名称。</returns>
-        string ITestDataSource.GetDisplayName(MethodInfo methodInfo, object[] data)
+        /// <param name="methodInfo">Target unit test method.</param>
+        /// <param name="data">The parameter list which was returned by <see cref="GetData"/>.</param>
+        /// <returns>The display name of this test case.</returns>
+        public string GetDisplayName(MethodInfo methodInfo, object[] data)
         {
             return ContractTest.Method[methodInfo][_testCaseIndex++].Result.DisplayName;
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets or increment the current test case index.
+        /// <see cref="Execute"/> and <see cref="GetDisplayName"/> should increment it separately
+        /// because they are not in the same instance.
+        /// </summary>
+        private int _testCaseIndex;
     }
 }
