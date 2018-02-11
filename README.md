@@ -1,25 +1,37 @@
+[English][en]|[日本語][jp]|[简体中文][zh-chs]|[繁體中文][zh-cht]
+-|-|-|-
+
+[en]: /README.md
+[jp]: /README.jp.md
+[zh-chs]: /README.zh-chs.md
+[zh-cht]: /README.zh-cht.md
+
 # MSTestEnhancer
 
-// TODO 简介
+Don't you think that naming is very very hard? Especially naming for unit test method? Read this article for more data of naming: [Don’t go into programming if you don’t have a good thesaurus - ITworld](https://www.itworld.com/article/2833265/cloud-computing/don-t-go-into-programming-if-you-don-t-have-a-good-thesaurus.html).
+
+MSTestEnhancer helps you to write unit tests without naming any method.
+
+MSTestEnhancer is a contract-style unit test extension for MSTestv2. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.
 
 ---
 
-## 新手入门
+## Getting Started with MSTestEnhancer
 
 // Constructing
 
-## 开源社区需要你的加入
+## How to Engage, Contribute and Provide Feedback
 
 // Constructing
 
-### 发现并提出问题
+### Issue Guide
 
 // Constructing
 
-### 贡献你的代码
+### Contributing Guide
 
 // Constructing
 
-## 许可协议
+## License
 
-[MIT 许可](./LICENSE)
+MSTestEnhancer is licensed under the [MIT license](/LICENSE)
