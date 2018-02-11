@@ -44,7 +44,7 @@ public class DemoTest
 
 于是，运行单元测试将看到这样的结果视图：
 
-![单元测试运行结果](/docs/images/unit-test-result-of-demo.png)
+![单元测试运行结果](/docs/images/unit-test-result-of-demo.zh-chs.png)
 
 ## 开源社区需要你的加入
 

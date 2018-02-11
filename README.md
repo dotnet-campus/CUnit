@@ -46,7 +46,7 @@ public class DemoTest
 
 Then you'll see this kind of test result in testing explorer window:
 
-![Unit test result](/docs/images/unit-test-result-of-demo.en.png)
+![Unit test result](/docs/images/unit-test-result-of-demo.png)
 
 ## How to Engage, Contribute and Provide Feedback
 
