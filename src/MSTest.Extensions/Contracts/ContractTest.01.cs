@@ -6,10 +6,10 @@ namespace MSTest.Extensions.Contracts
     public static partial class ContractTest
     {
         /// <summary>
-        /// 测试此字符串描述的契约。
+        /// Create a test case for the specified <paramref name="contract"/>.
         /// </summary>
-        /// <param name="contract">契约的字符串描述。</param>
-        /// <param name="testCase">用于测试此契约的测试用例。</param>
+        /// <param name="contract">The description of a test contract.</param>
+        /// <param name="testCase">The async action of the which is used to test the contract.</param>
         [System.Diagnostics.Contracts.Pure, NotNull]
         public static ContractTestContext<T> Test<T>([NotNull] this string contract, [NotNull] Action<T> testCase)
         {
