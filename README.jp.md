@@ -15,3 +15,35 @@
 MSTestEnhancerは、メソッドの名前を付けずに単体テストを記述するのに役立ちます。
 
 MSTestEnhancerは、MSTestv2の契約スタイルの単体テスト拡張です。 単体テストを書くときに、混乱しているテストメソッド名を記述するのではなく、メソッド契約の記述を書くことができます。
+
+## 入門
+
+次のようにユニットテストを書くことができます：
+
+```csharp
+[TestClass]
+public class DemoTest
+{
+    [ContractTestCase]
+    public void Foo()
+    {
+        "A条件が満たされると、Xのことが起こるはずです。".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+
+        "しかし、あなたがB条件を満たすとき、Y事が起こるはずです。".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+    }
+}
+```
+
+次に、エクスプローラウィンドウのテストでこのようなテスト結果が表示されます。
+
+![ユニットテスト結果](/docs/images/unit-test-result-of-demo.jp.png)

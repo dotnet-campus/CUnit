@@ -16,7 +16,35 @@ MSTestEnhancer 是 MSTest v2 的一个扩展。使用它，你可以用契约的
 
 ## 新手入门
 
-// 编写中……
+现在，你的单元测试可以这样写了：
+
+```csharp
+[TestClass]
+public class DemoTest
+{
+    [ContractTestCase]
+    public void Foo()
+    {
+        "当满足 A 条件时，应该发生 A' 事。".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+        
+        "当满足 B 条件时，应该发生 B' 事。".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+    }
+}
+```
+
+于是，运行单元测试将看到这样的结果视图：
+
+![单元测试运行结果](/docs/images/unit-test-result-of-demo.png)
 
 ## 开源社区需要你的加入
 

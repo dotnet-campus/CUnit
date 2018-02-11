@@ -18,7 +18,35 @@ MSTestEnhancer is a contract-style unit test extension for MSTestv2. You can wri
 
 ## Getting Started with MSTestEnhancer
 
-// Constructing
+You can write unit test like this:
+
+```csharp
+[TestClass]
+public class DemoTest
+{
+    [ContractTestCase]
+    public void Foo()
+    {
+        "When A happened, result A'.".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+        
+        "But when B happened, result B'".Test(() =>
+        {
+            // Arrange
+            // Action
+            // Assert
+        });
+    }
+}
+```
+
+Then you'll see this kind of test result in testing explorer window:
+
+![Unit test result](/docs/images/unit-test-result-of-demo.en.png)
 
 ## How to Engage, Contribute and Provide Feedback
 
