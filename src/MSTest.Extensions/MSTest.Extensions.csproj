@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <PackageId>MSTestEnhancer</PackageId>
+    <Authors>erdao;walterlv</Authors>
+    <RepositoryUrl>https://github.com/easiwin/MSTestEnhancer.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\MSTest.Extensions.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\MSTest.Extensions.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Contracts\ContractTest.01.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.02.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.03.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.04.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.05.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.06.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.07.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTest.08.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTestContext.01.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.02.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.03.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.04.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.05.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.06.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.07.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTestContext.08.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet &quot;$(ProjectDir)..\..\build\GenericGenerator\bin\netcoreapp2.0\GenericGenerator.dll&quot; &quot;$(ProjectDir)Contracts\ContractTestContext.cs&quot; &quot;$(ProjectDir)Contracts\ContractTest.01.cs&quot;" />
+  </Target>
+
+</Project>

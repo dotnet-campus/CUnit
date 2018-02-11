@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rules for MSTest.Extensions" Description="Every contributors should follow these rules." ToolsVersion="15.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1004" Action="Info" />
+    <Rule Id="CA1006" Action="None" />
+    <Rule Id="CA1008" Action="Error" />
+    <Rule Id="CA1009" Action="None" />
+    <Rule Id="CA1013" Action="Error" />
+    <Rule Id="CA1018" Action="None" />
+    <Rule Id="CA1026" Action="None" />
+    <Rule Id="CA1031" Action="Error" />
+    <Rule Id="CA1033" Action="None" />
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA1709" Action="None" />
+    <Rule Id="CA2210" Action="None" />
+    <Rule Id="CA2211" Action="Error" />
+    <Rule Id="CA2214" Action="Error" />
+    <Rule Id="CA2218" Action="Error" />
+    <Rule Id="CA2224" Action="Error" />
+    <Rule Id="CA2226" Action="Error" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <Rule Id="CS0108" Action="Error" />
+    <Rule Id="CS0109" Action="Error" />
+    <Rule Id="CS0114" Action="Error" />
+    <Rule Id="CS0219" Action="Error" />
+    <Rule Id="CS0419" Action="Error" />
+    <Rule Id="CS0473" Action="Error" />
+    <Rule Id="CS0626" Action="Error" />
+    <Rule Id="CS0628" Action="Error" />
+    <Rule Id="CS0659" Action="Error" />
+    <Rule Id="CS0660" Action="Error" />
+    <Rule Id="CS0661" Action="Error" />
+    <Rule Id="CS1058" Action="Error" />
+    <Rule Id="CS1570" Action="Error" />
+    <Rule Id="CS1571" Action="Error" />
+    <Rule Id="CS1572" Action="Error" />
+    <Rule Id="CS1573" Action="Error" />
+    <Rule Id="CS1574" Action="Error" />
+    <Rule Id="CS1580" Action="Error" />
+    <Rule Id="CS1581" Action="Error" />
+    <Rule Id="CS1584" Action="Error" />
+    <Rule Id="CS1587" Action="Error" />
+    <Rule Id="CS1589" Action="Error" />
+    <Rule Id="CS1590" Action="Error" />
+    <Rule Id="CS1591" Action="Error" />
+    <Rule Id="CS1592" Action="Error" />
+    <Rule Id="CS1710" Action="Error" />
+    <Rule Id="CS1711" Action="Error" />
+    <Rule Id="CS1712" Action="Error" />
+    <Rule Id="CS1720" Action="Error" />
+    <Rule Id="CS1723" Action="Error" />
+    <Rule Id="CS1734" Action="Error" />
+    <Rule Id="CS1735" Action="Error" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.EditorFeatures" RuleNamespace="Microsoft.CodeAnalysis.CSharp.EditorFeatures">
+    <Rule Id="IDE0032" Action="Error" />
+    <Rule Id="IDE0032WithoutSuggestion" Action="Error" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0035" Action="Error" />
+    <Rule Id="IDE0036" Action="Error" />
+    <Rule Id="IDE0037" Action="Warning" />
+    <Rule Id="IDE0039" Action="Warning" />
+    <Rule Id="IDE0040" Action="Error" />
+    <Rule Id="IDE0041" Action="Error" />
+    <Rule Id="IDE1005" Action="Warning" />
+    <Rule Id="IDE1006" Action="Warning" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.Features" RuleNamespace="Microsoft.CodeAnalysis.Features">
+    <Rule Id="IDE0033" Action="Warning" />
+  </Rules>
+</RuleSet>
