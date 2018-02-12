@@ -55,6 +55,7 @@ $@"//---------------------------------------------------------------------------
                 .Replace("(T t)", FromTemplate("({0})", "T{n} t{n}", ", ", genericCount))
                 .Replace("(t)", FromTemplate("({0})", "t{n}", ", ", genericCount))
                 .Replace("var t =", FromTemplate("var ({0}) =", "t{n}", ", ", genericCount))
+                .Replace(" t =>", FromTemplate(" ({0}) =>", "t{n}", ", ", genericCount))
                 .Replace(" T ", FromTemplate(" ({0}) ", "T{n}", ", ", genericCount))
                 .Replace(" t;", FromTemplate(" ({0});", "t{n}", ", ", genericCount))
                 // 生成 [GeneratedCode]。

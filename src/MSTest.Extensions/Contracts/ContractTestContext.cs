@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.Contracts;
+using System.Threading.Tasks;
 using MSTest.Extensions.Core;
 
 namespace MSTest.Extensions.Contracts
@@ -15,6 +16,28 @@ namespace MSTest.Extensions.Contracts
         /// <param name="contract">The contract description string for this test case.</param>
         /// <param name="testCase">The actual action to execute the test case.</param>
         public ContractTestContext([NotNull] string contract, [NotNull] Action<T> testCase)
+        {
+            _contract = contract ?? throw new ArgumentNullException(nameof(contract));
+            if (testCase == null) throw new ArgumentNullException(nameof(testCase));
+#if NET45
+#pragma warning disable CS1998 // Async function without await expression
+            _testCase = async t => testCase(t);
+#pragma warning restore CS1998 // Async function without await expression
+#else
+            _testCase = t =>
+            {
+                testCase(t);
+                return Task.CompletedTask;
+            };
+#endif
+        }
+
+        /// <summary>
+        /// Create a new <see cref="ContractTestContext{T}"/> instance with contract description and async testing action.
+        /// </summary>
+        /// <param name="contract">The contract description string for this test case.</param>
+        /// <param name="testCase">The actual async action to execute the test case.</param>
+        public ContractTestContext([NotNull] string contract, [NotNull] Func<T, Task> testCase)
         {
             _contract = contract ?? throw new ArgumentNullException(nameof(contract));
             _testCase = testCase ?? throw new ArgumentNullException(nameof(testCase));
@@ -70,7 +93,8 @@ namespace MSTest.Extensions.Contracts
 
         /// <summary>
         /// Invoke this action to execute this test case with the argument(s).
+        /// The returning value of this func will never be null, but it does not mean that it is an async func.
         /// </summary>
-        [NotNull] private readonly Action<T> _testCase;
+        [NotNull] private readonly Func<T, Task> _testCase;
     }
 }
