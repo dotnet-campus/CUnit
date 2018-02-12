@@ -55,7 +55,7 @@ namespace MSTest.Extensions.Contracts
         public ContractTestContext<T> WithArguments([NotNull] params T[] ts)
         {
             if (ts == null) throw new ArgumentNullException(nameof(ts));
-            if (ts.Length == 1)
+            if (ts.Length < 1)
             {
                 throw new ArgumentException(
                     $"At least one argument should be passed into test case {_contract}", nameof(ts));

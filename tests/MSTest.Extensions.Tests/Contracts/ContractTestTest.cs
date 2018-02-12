@@ -5,37 +5,38 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
+#pragma warning disable CS1998
+
 namespace MSTest.Extensions.Tests.Contracts
 {
     [TestClass]
     public class ContractTestTest
     {
         [TestMethod]
-        [DataRow(null, false, DisplayName = "If contract is null but action is not null, exception thrown.")]
-        [DataRow("", true, DisplayName = "If contract is not null but action is null, exception thrown.")]
+        [DataRow(null, false, false, DisplayName = "If contract is null but action is not null, exception thrown.")]
+        [DataRow("", true, false, DisplayName = "If contract is not null but action is null, exception thrown.")]
+        [DataRow(null, false, true, DisplayName =
+            "If contract is null but async action is not null, exception thrown.")]
+        [DataRow("", true, true, DisplayName = "If contract is not null but async action is null, exception thrown.")]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void Test_NullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull)
+        public void Test_NullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull, bool isAsync)
         {
-            // Arrange
-            var action = isActionNull ? (Action) null : () => { };
+            if (isAsync)
+            {
+                // Arrange
+                var action = isActionNull ? (Func<Task>) null : async () => { };
 
-            // Action & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => { contract.Test(action); });
-        }
+                // Action & Assert
+                Assert.ThrowsException<ArgumentNullException>(() => { contract.Test(action); });
+            }
+            else
+            {
+                // Arrange
+                var action = isActionNull ? (Action) null : () => { };
 
-        [TestMethod]
-        [DataRow(null, false, DisplayName = "If contract is null but async action is not null, exception thrown.")]
-        [DataRow("", true, DisplayName = "If contract is not null but async action is null, exception thrown.")]
-        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void Test_AsyncNullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull)
-        {
-            // Arrange
-#pragma warning disable CS1998
-            var action = isActionNull ? (Func<Task>) null : async () => { };
-#pragma warning restore CS1998
-
-            // Action & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => { contract.Test(action); });
+                // Action & Assert
+                Assert.ThrowsException<ArgumentNullException>(() => { contract.Test(action); });
+            }
         }
 
         [TestMethod]
@@ -75,3 +76,5 @@ namespace MSTest.Extensions.Tests.Contracts
         }
     }
 }
+
+#pragma warning restore CS1998

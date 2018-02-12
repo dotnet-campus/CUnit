@@ -12,29 +12,29 @@ namespace MSTest.Extensions.Tests.Contracts
     public class ContractTestGenericTest
     {
         [TestMethod]
-        [DataRow(null, false, DisplayName = "If contract is null but action is not null, exception thrown.")]
-        [DataRow("", true, DisplayName = "If contract is not null but action is null, exception thrown.")]
+        [DataRow(null, false, false, DisplayName = "If contract is null but action is not null, exception thrown.")]
+        [DataRow("", true, false, DisplayName = "If contract is not null but action is null, exception thrown.")]
+        [DataRow(null, false, true, DisplayName = "If contract is null but async action is not null, exception thrown.")]
+        [DataRow("", true, true, DisplayName = "If contract is not null but async action is null, exception thrown.")]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void Test_NullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull)
+        public void Test_NullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull, bool isAsync)
         {
-            // Arrange
-            var action = isActionNull ? (Action<int>) null : a => { };
+            if (isAsync)
+            {
+                // Arrange
+                var action = isActionNull ? (Func<int, Task>)null : async a => { };
 
-            // Action & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => contract.Test(action));
-        }
+                // Action & Assert
+                Assert.ThrowsException<ArgumentNullException>(() => contract.Test(action));
+            }
+            else
+            {
+                // Arrange
+                var action = isActionNull ? (Action<int>)null : a => { };
 
-        [TestMethod]
-        [DataRow(null, false, DisplayName = "If contract is null but async action is not null, exception thrown.")]
-        [DataRow("", true, DisplayName = "If contract is not null but async action is null, exception thrown.")]
-        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void Test_AsyncNullArgument_ArgumentNullExceptionThrown(string contract, bool isActionNull)
-        {
-            // Arrange
-            var action = isActionNull ? (Func<int, Task>) null : async a => { };
-
-            // Action & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => contract.Test(action));
+                // Action & Assert
+                Assert.ThrowsException<ArgumentNullException>(() => contract.Test(action));
+            }
         }
 
         [TestMethod]
