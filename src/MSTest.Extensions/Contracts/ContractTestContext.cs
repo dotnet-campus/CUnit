@@ -28,7 +28,7 @@ namespace MSTest.Extensions.Contracts
         /// <remarks>
         /// Note that we only verify the <paramref name="ts"/> argument in runtime. In this case, we have the power to pass an array instead of writing them all in a method parameter list.
         /// </remarks>
-        [NotNull]
+        [NotNull, PublicAPI]
         public ContractTestContext<T> WithArguments([NotNull] params T[] ts)
         {
             if (ts == null) throw new ArgumentNullException(nameof(ts));
@@ -54,6 +54,7 @@ namespace MSTest.Extensions.Contracts
         /// When the test case is executed, pass the arguments to the test case action.
         /// </summary>
         /// <returns>The instance itself.</returns>
+        [NotNull, PublicAPI]
         public ContractTestContext<T> WithArguments(T t)
         {
             ContractTest.Method.Current.Add(new ContractTestCase(

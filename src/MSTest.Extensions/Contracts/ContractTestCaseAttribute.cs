@@ -24,6 +24,7 @@ namespace MSTest.Extensions.Contracts
     /// <summary>
     /// Enable the unit test writing style of `"contract string".Test(TestCaseAction)`.
     /// </summary>
+    [PublicAPI]
     public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
         #region Instance derived from TestMethodAttribute

@@ -10,7 +10,7 @@ namespace MSTest.Extensions.Contracts
         /// </summary>
         /// <param name="contract">The description of a test contract.</param>
         /// <param name="testCase">The async action of the which is used to test the contract.</param>
-        [System.Diagnostics.Contracts.Pure, NotNull]
+        [System.Diagnostics.Contracts.Pure, NotNull, PublicAPI]
         public static ContractTestContext<T> Test<T>([NotNull] this string contract, [NotNull] Action<T> testCase)
         {
             if (contract == null) throw new ArgumentNullException(nameof(contract));

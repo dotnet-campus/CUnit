@@ -17,6 +17,7 @@ namespace MSTest.Extensions.Contracts
         /// </summary>
         /// <param name="contract">The description of a test contract.</param>
         /// <param name="testCase">The action of the which is used to test the contract.</param>
+        [PublicAPI]
         public static void Test([NotNull] this string contract, [NotNull] Action testCase)
         {
             if (contract == null) throw new ArgumentNullException(nameof(contract));
@@ -31,6 +32,7 @@ namespace MSTest.Extensions.Contracts
         /// </summary>
         /// <param name="contract">The description of a test contract.</param>
         /// <param name="testCase">The async action of the which is used to test the contract.</param>
+        [PublicAPI]
         public static void Test([NotNull] this string contract, [NotNull] Func<Task> testCase)
         {
             if (contract == null) throw new ArgumentNullException(nameof(contract));
