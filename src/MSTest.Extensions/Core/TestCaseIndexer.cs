@@ -80,9 +80,11 @@ namespace MSTest.Extensions.Core
         private static string GetKey([NotNull] MemberInfo member)
         {
             if (member == null) throw new ArgumentNullException(nameof(member));
+            var type = member.DeclaringType;
+            if (type == null) throw new ArgumentException("The method must be declared in a type.", nameof(member));
             Contract.EndContractBlock();
 
-            return $"{member.DeclaringType.FullName}.{member.Name}";
+            return $"{type.FullName}.{member.Name}";
         }
 
         /// <summary>

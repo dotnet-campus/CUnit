@@ -54,7 +54,16 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public IEnumerable<object[]> GetData([NotNull] MethodInfo methodInfo)
         {
-            methodInfo.Invoke(Activator.CreateInstance(methodInfo.DeclaringType), null);
+            var type = methodInfo.DeclaringType;
+            if (type == null)
+            {
+                throw new ArgumentException(
+                    "The method must be declared in a type. " +
+                    "If this exception happened, there might be a bug in MSTest v2.",
+                    nameof(methodInfo));
+            }
+
+            methodInfo.Invoke(Activator.CreateInstance(type), null);
             var testCaseList = ContractTest.Method[methodInfo];
             return Enumerable.Range(0, testCaseList.Count).Select(x => (object[])null);
         }
