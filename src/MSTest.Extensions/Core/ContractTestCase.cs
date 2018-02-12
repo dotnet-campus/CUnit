@@ -21,11 +21,17 @@ namespace MSTest.Extensions.Core
         {
             if (testCase == null) throw new ArgumentNullException(nameof(testCase));
             _contract = contract ?? throw new ArgumentNullException(nameof(contract));
+#if NET45
+#pragma warning disable CS1998 // Async function without await expression
+            _testCase = async () => testCase();
+#pragma warning restore CS1998 // Async function without await expression
+#else
             _testCase = () =>
             {
                 testCase();
                 return Task.CompletedTask;
             };
+#endif
         }
 
         /// <summary>

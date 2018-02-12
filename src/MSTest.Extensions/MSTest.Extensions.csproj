@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <PackageId>MSTestEnhancer</PackageId>
     <Authors>erdao;walterlv</Authors>
@@ -13,6 +13,7 @@
     <PackageLicenseUrl>https://github.com/easiwin/MSTestEnhancer/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -42,12 +43,13 @@
     <Compile Update="Contracts\ContractTestContext.08.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
   </ItemGroup>
 
+  <!--EXTERNAL_PROPERTIES: TargetFramework-->
+  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="dotnet &quot;$(ProjectDir)..\..\build\GenericGenerator\bin\netcoreapp2.0\GenericGenerator.dll&quot; &quot;$(ProjectDir)Contracts\ContractTestContext.cs&quot; &quot;$(ProjectDir)Contracts\ContractTest.01.cs&quot;" />
-  </Target>
 
 </Project>

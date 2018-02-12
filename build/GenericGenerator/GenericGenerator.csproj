@@ -6,4 +6,8 @@
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet &quot;$(TargetPath)&quot; &quot;$(ProjectDir)..\..\src\MSTest.Extensions\Contracts\ContractTestContext.cs&quot; &quot;$(ProjectDir)..\..\src\MSTest.Extensions\Contracts\ContractTest.01.cs&quot;" />
+  </Target>
+
 </Project>
