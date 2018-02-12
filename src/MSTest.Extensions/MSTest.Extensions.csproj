@@ -14,6 +14,9 @@
     <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Version>1.1.0</Version>
+    <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
+    <PackageReleaseNotes>1. All xml comments are now in English.
+2. Add support for .NET Framework 4.5. Now netstandard/net45/net47 are all supported.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
