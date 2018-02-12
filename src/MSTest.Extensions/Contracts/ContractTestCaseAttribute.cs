@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -62,6 +63,7 @@ namespace MSTest.Extensions.Contracts
                     "If this exception happened, there might be a bug in MSTest v2.",
                     nameof(methodInfo));
             }
+            Contract.EndContractBlock();
 
             methodInfo.Invoke(Activator.CreateInstance(type), null);
             var testCaseList = ContractTest.Method[methodInfo];
