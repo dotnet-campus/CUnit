@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -50,7 +51,6 @@ namespace MSTest.Extensions.Core
         {
             get
             {
-                if (testKey == null) throw new ArgumentNullException(nameof(testKey));
                 Contract.EndContractBlock();
 
                 if (!_testCaseDictionary.TryGetValue(testKey, out var list))
@@ -76,12 +76,11 @@ namespace MSTest.Extensions.Core
         /// </summary>
         /// <param name="member">The unit test method.</param>
         /// <returns>The unique string that indicates a unit test method.</returns>
-        [NotNull]
+        [NotNull, SuppressMessage("ReSharper", "PossibleNullReferenceException")]
         private static string GetKey([NotNull] MemberInfo member)
         {
-            if (member == null) throw new ArgumentNullException(nameof(member));
             var type = member.DeclaringType;
-            if (type == null) throw new ArgumentException("The method must be declared in a type.", nameof(member));
+            Contract.Requires(type != null);
             Contract.EndContractBlock();
 
             return $"{type.FullName}.{member.Name}";

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
@@ -52,17 +53,12 @@ namespace MSTest.Extensions.Contracts
         /// The parameter array which will be passed into the target unit test method.
         /// We don't need any parameter, so we return an all null array with length equals to test case count.
         /// </returns>
-        [NotNull]
+        [NotNull, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public IEnumerable<object[]> GetData([NotNull] MethodInfo methodInfo)
         {
             var type = methodInfo.DeclaringType;
-            if (type == null)
-            {
-                throw new ArgumentException(
-                    "The method must be declared in a type. " +
-                    "If this exception happened, there might be a bug in MSTest v2.",
-                    nameof(methodInfo));
-            }
+            Contract.Requires(type != null,
+                "The method must be declared in a type. If this exception happened, there might be a bug in MSTest v2.");
             Contract.EndContractBlock();
 
             methodInfo.Invoke(Activator.CreateInstance(type), null);
