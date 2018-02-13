@@ -4,6 +4,10 @@ using MSTest.Extensions.Contracts;
 
 namespace MSTest.Extensions.Tests.Contracts
 {
+    /// <summary>
+    /// All methods in this class are not real unit test.
+    /// It is only used for you to check the test result in the result view.
+    /// </summary>
     [TestClass]
     public class ContractTestCaseAttributeTest
     {
@@ -11,6 +15,13 @@ namespace MSTest.Extensions.Tests.Contracts
         public void RunAPassedTestCase()
         {
             "".Test(() => { });
+        }
+
+        [ContractTestCase]
+        public void RunATestCaseWithExtraInfo()
+        {
+            "Output".Test(() => Console.WriteLine("This is a test message."));
+            "Error".Test(() => Console.Error.WriteLine("This is an error message."));
         }
 
         [ContractTestCase, Ignore]

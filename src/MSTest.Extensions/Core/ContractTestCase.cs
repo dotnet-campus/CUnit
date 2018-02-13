@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -55,30 +56,16 @@ namespace MSTest.Extensions.Core
         [NotNull]
         private TestResult Execute()
         {
-            // Prepare the execution.
-            Exception exception = null;
-            var watch = new Stopwatch();
-            watch.Start();
-
-            // Execute the test case.
-            try
-            {
-                _testCase.Invoke().Wait();
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-            }
-            finally
-            {
-                watch.Stop();
-            }
+            // Execute the unit test.
+            var (duration, output, error, exception) = ExecuteCore();
 
             // Return the test result.
             var result = new TestResult
             {
                 DisplayName = _contract,
-                Duration = watch.Elapsed,
+                Duration = duration,
+                LogOutput = output,
+                LogError = error,
             };
             if (exception == null)
             {
@@ -91,6 +78,61 @@ namespace MSTest.Extensions.Core
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Execute the unit test and get the execution result.
+        /// </summary>
+        /// <returns>
+        /// duration: The ellapsed time of executing this test case.
+        /// output: When `Console.Write` is called, the output will be collected into this property.
+        /// output: When `Console.Write` is called, it will be collected into this property.
+        /// exception: If any exception occurred, it will be collected into this property; otherwise, it will be null.
+        /// </returns>
+        private (TimeSpan duration, string output, string error, Exception exception) ExecuteCore()
+        {
+            TimeSpan duration;
+            string output;
+            string error;
+            Exception exception;
+
+            using (var outputWriter = new ThreadSafeStringWriter(CultureInfo.InvariantCulture))
+            {
+                using (var errorWriter = new ThreadSafeStringWriter(CultureInfo.InvariantCulture))
+                {
+                    // Prepare the execution.
+                    var originOut = Console.Out;
+                    var originError = Console.Error;
+                    Console.SetOut(outputWriter);
+                    Console.SetError(errorWriter);
+
+                    var watch = new Stopwatch();
+                    watch.Start();
+
+                    // Execute the test case.
+                    try
+                    {
+                        _testCase().Wait();
+                        exception = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                    finally
+                    {
+                        watch.Stop();
+                        Console.SetOut(originOut);
+                        Console.SetError(originError);
+
+                        duration = watch.Elapsed;
+                        output = outputWriter.ToString();
+                        error = errorWriter.ToString();
+                    }
+                }
+            }
+
+            return (duration, output, error, exception);
         }
 
         [CanBeNull, ContractPublicPropertyName(nameof(Result))]
