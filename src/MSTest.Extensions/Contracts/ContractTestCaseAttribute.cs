@@ -120,6 +120,7 @@ namespace MSTest.Extensions.Contracts
                     @"No test found",
                     @"A unit test method should contain at least one test case.
 Try to call Test extension method to collect one.
+
 ```csharp
 ""Test contract description"".Test(() =>
 {
@@ -127,7 +128,9 @@ Try to call Test extension method to collect one.
     // Action
     // Assert
 });
-```"));
+```
+
+If you only need to write a normal test method, use `TestMethodAttribute` instead of `ContractTestCaseAttribute`."));
             }
         }
 
