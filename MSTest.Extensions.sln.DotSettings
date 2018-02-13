@@ -44,4 +44,5 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=TryCastAndCheckForNull_002E0/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=TryCastAndCheckForNull_002E1/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UseNullPropagation/@EntryIndexedValue">WARNING</s:String>
-	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UsePatternMatching/@EntryIndexedValue">WARNING</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UsePatternMatching/@EntryIndexedValue">WARNING</s:String>
+	<s:Boolean x:Key="/Default/Environment/ExcludedFiles/FilesAndFoldersToSkip/=055E6C63_002D3CC7_002D427E_002DB14F_002D69C85D7E971A_002Fd_003ACore_002Ff_003AThreadSafeStringWriter_002Ecs/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

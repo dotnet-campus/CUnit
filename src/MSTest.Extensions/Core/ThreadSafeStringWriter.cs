@@ -11,7 +11,7 @@ namespace MSTest.Extensions.Core
     /// </summary>
     internal class ThreadSafeStringWriter : StringWriter
     {
-        private readonly object lockObject = new object();
+        private readonly object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreadSafeStringWriter"/> class.
@@ -27,7 +27,7 @@ namespace MSTest.Extensions.Core
         /// <inheritdoc/>
         public override string ToString()
         {
-            lock (this.lockObject)
+            lock (_lockObject)
             {
                 try
                 {
@@ -35,7 +35,7 @@ namespace MSTest.Extensions.Core
                 }
                 catch (ObjectDisposedException)
                 {
-                    return default(string);
+                    return string.Empty;
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace MSTest.Extensions.Core
         /// <inheritdoc/>
         public override void Write(char value)
         {
-            lock (this.lockObject)
+            lock (_lockObject)
             {
                 InvokeBaseClass(() => base.Write(value));
             }
@@ -52,7 +52,7 @@ namespace MSTest.Extensions.Core
         /// <inheritdoc/>
         public override void Write(string value)
         {
-            lock (this.lockObject)
+            lock (_lockObject)
             {
                 InvokeBaseClass(() => base.Write(value));
             }
@@ -61,7 +61,7 @@ namespace MSTest.Extensions.Core
         /// <inheritdoc/>
         public override void Write(char[] buffer, int index, int count)
         {
-            lock (this.lockObject)
+            lock (_lockObject)
             {
                 InvokeBaseClass(() => base.Write(buffer, index, count));
             }
@@ -70,7 +70,7 @@ namespace MSTest.Extensions.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            lock (this.lockObject)
+            lock (_lockObject)
             {
                 InvokeBaseClass(() => base.Dispose(disposing));
             }
