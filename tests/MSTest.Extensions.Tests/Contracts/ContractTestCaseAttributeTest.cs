@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
@@ -8,10 +7,16 @@ namespace MSTest.Extensions.Tests.Contracts
     [TestClass]
     public class ContractTestCaseAttributeTest
     {
-        [ContractTestCase, SuppressMessage("ReSharper", "InconsistentNaming")]
-        public void LetTheMSTestv2RunThisExtensionOnce()
+        [ContractTestCase]
+        public void RunAPassedTestCase()
         {
             "".Test(() => { });
+        }
+
+        [ContractTestCase, Ignore]
+        public void RunAFailedTestCase()
+        {
+            "".Test(() => Assert.Fail());
         }
 
         [ContractTestCase, Ignore]
