@@ -5,6 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSTest.Extensions.Core;
 
 // ## How it works?
 // 
@@ -53,17 +54,15 @@ namespace MSTest.Extensions.Contracts
         /// The parameter array which will be passed into the target unit test method.
         /// We don't need any parameter, so we return an all null array with length equals to test case count.
         /// </returns>
-        [NotNull, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        [NotNull]
         public IEnumerable<object[]> GetData([NotNull] MethodInfo methodInfo)
         {
-            var type = methodInfo.DeclaringType;
-            Contract.Requires(type != null,
-                "The method must be declared in a type. If this exception happened, there might be a bug in MSTest v2.");
             Contract.EndContractBlock();
 
-            methodInfo.Invoke(Activator.CreateInstance(type), null);
-            var testCaseList = ContractTest.Method[methodInfo];
-            return Enumerable.Range(0, testCaseList.Count).Select(x => (object[])null);
+            // Collect all test cases from the target unit test method.
+            Collect(methodInfo);
+
+            return Enumerable.Range(0, ContractTest.Method[methodInfo].Count).Select(x => (object[]) null);
         }
 
         /// <summary>
@@ -77,6 +76,59 @@ namespace MSTest.Extensions.Contracts
         public string GetDisplayName([NotNull] MethodInfo methodInfo, [NotNull] object[] data)
         {
             return ContractTest.Method[methodInfo][_testCaseIndex++].Result.DisplayName;
+        }
+
+        #endregion
+
+        #region Collect Test Cases
+
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
+        private static void Collect([NotNull] MethodInfo methodInfo)
+        {
+            var type = methodInfo.DeclaringType;
+            Contract.Requires(type != null,
+                "The method must be declared in a type. If this exception happened, there might be a bug in MSTest v2.");
+
+            var testInstance = Activator.CreateInstance(type);
+            var testCaseList = ContractTest.Method[methodInfo];
+            try
+            {
+                // Invoke target test method to collect all test cases.
+                methodInfo.Invoke(testInstance, null);
+            }
+            catch (TargetInvocationException ex)
+            {
+                // An exception has occurred during the test cases collecting.
+                // We should create a new test result to report this exception instead of reporting the collected ones.
+                var exception = ex.InnerException;
+                Contract.Assume(exception != null);
+
+                testCaseList.Clear();
+                testCaseList.Add(new ReadonlyTestCase(exception, exception.GetType().FullName));
+            }
+            catch (Exception ex)
+            {
+                // An unexpected exception has occurred, but we don't know why it happens.
+                // We should Add a new test result to report this exception.
+                testCaseList.Add(new ReadonlyTestCase(ex, ex.GetType().FullName));
+            }
+
+            if (!testCaseList.Any())
+            {
+                testCaseList.Add(new ReadonlyTestCase(
+                    @"No test found",
+                    @"A unit test method should contain at least one test case.
+Try to call Test extension method to collect one.
+```csharp
+""Test contract description"".Test(() =>
+{
+    // Arrange
+    // Action
+    // Assert
+});
+```"));
+            }
         }
 
         #endregion
