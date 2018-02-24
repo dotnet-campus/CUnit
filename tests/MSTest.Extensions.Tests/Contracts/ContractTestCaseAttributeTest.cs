@@ -24,6 +24,19 @@ namespace MSTest.Extensions.Tests.Contracts
             "Error".Test(() => Console.Error.WriteLine("This is an error message."));
         }
 
+
+        [TestMethod, Ignore]
+        public void OriginalAssertButFailed()
+        {
+            Assert.AreEqual(5, 6);
+        }
+
+        [ContractTestCase, Ignore]
+        public void AssertButFailed()
+        {
+            "This test case will always fail.".Test(async () => Assert.AreEqual(5, 6));
+        }
+
         [ContractTestCase, Ignore]
         public void RunAFailedTestCase()
         {

@@ -115,6 +115,11 @@ namespace MSTest.Extensions.Core
                         _testCase().Wait();
                         exception = null;
                     }
+                    catch (AggregateException ex)
+                    {
+                        // If this test case is an async method, extract the inner excetion.
+                        exception = ex.InnerExceptions.Count == 1 ? ex.InnerException : ex;
+                    }
                     catch (Exception ex)
                     {
                         exception = ex;
