@@ -9,7 +9,7 @@ using MSTest.Extensions.Core;
 namespace MSTest.Extensions.Tests.Core
 {
     [TestClass]
-    public class TestCaseIndexerTest
+    public class TestCaseIndexerTests
     {
         [TestMethod, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void ThisMethod_NullArgument_ArgumentNullExceptionThrown()

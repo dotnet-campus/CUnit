@@ -9,7 +9,7 @@ namespace MSTest.Extensions.Tests.Contracts
     /// It is only used for you to check the test result in the result view.
     /// </summary>
     [TestClass]
-    public class ContractTestCaseAttributeTest
+    public class ContractTestCaseAttributeTests
     {
         [ContractTestCase]
         public void RunAPassedTestCase()

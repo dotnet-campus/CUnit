@@ -10,7 +10,7 @@ using MSTest.Extensions.Core;
 namespace MSTest.Extensions.Tests.Core
 {
     [TestClass]
-    public class ContractTestCaseTest
+    public class ContractTestCaseTests
     {
         [TestMethod]
         [DataRow(null, false, false, DisplayName = "If contract is null but action is not null, exception thrown.")]
