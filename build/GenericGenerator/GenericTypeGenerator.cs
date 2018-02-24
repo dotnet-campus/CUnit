@@ -49,6 +49,7 @@ $@"//---------------------------------------------------------------------------
                 .Replace("var t in", FromTemplate("var ({0}) in", "t{n}", ", ", genericCount))
                 .Replace(", t)", FromTemplate(", {0})", "t{n}", ", ", genericCount))
                 .Replace("return (t, ", FromTemplate("return ({0}, ", "t{n}", ", ", genericCount))
+                .Replace("({t})", FromTemplate("({0})", "{t{n}}", ", ", genericCount))
                 .Replace("<T>", FromTemplate("<{0}>", "T{n}", ", ", genericCount))
                 .Replace("{T}", FromTemplate("{{{0}}}", "T{n}", ", ", genericCount))
                 .Replace("(T value)", FromTemplate("(({0}) value)", "T{n}", ", ", genericCount))

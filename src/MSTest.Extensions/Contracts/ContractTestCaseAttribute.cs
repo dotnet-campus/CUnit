@@ -62,7 +62,10 @@ namespace MSTest.Extensions.Contracts
             // Collect all test cases from the target unit test method.
             Collect(methodInfo);
 
-            return Enumerable.Range(0, ContractTest.Method[methodInfo].Count).Select(x => (object[]) null);
+            var cases = ContractTest.Method[methodInfo];
+            VerifyContracts(cases);
+
+            return Enumerable.Range(0, cases.Count).Select(x => (object[]) null);
         }
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace MSTest.Extensions.Contracts
 
         #endregion
 
-        #region Collect Test Cases
+        #region Collect and verify test cases
 
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
@@ -132,6 +135,12 @@ Try to call Test extension method to collect one.
 
 If you only need to write a normal test method, use `TestMethodAttribute` instead of `ContractTestCaseAttribute`."));
             }
+        }
+
+
+        private void VerifyContracts(IList<ITestCase> cases)
+        {
+            // throw new NotImplementedException();
         }
 
         #endregion

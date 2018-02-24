@@ -63,10 +63,25 @@ namespace MSTest.Extensions.Contracts
 
             Contract.EndContractBlock();
 
+            // Check if every argument will be formatted into the contract.
+            var allFormatted = true;
+            for (var i = 0; i < ts.Length; i++)
+            {
+                allFormatted = _contract.Contains($"{{{i}}}");
+                if (!allFormatted) break;
+            }
+
             foreach (var t in ts)
             {
-                ContractTest.Method.Current.Add(new ContractTestCase(
-                    string.Format(_contract, t), () => _testCase(t)));
+                // If any argument is not formatted, post the argument value at the end of the contract string.
+                var contract = string.Format(_contract, t);
+                if (!allFormatted)
+                {
+                    contract = contract + $"({t})";
+                }
+
+                // Add an argument test case to the test case list.
+                ContractTest.Method.Current.Add(new ContractTestCase(contract, () => _testCase(t)));
             }
 
             return this;

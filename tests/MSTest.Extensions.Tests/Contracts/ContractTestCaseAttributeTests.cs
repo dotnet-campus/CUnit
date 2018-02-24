@@ -24,6 +24,32 @@ namespace MSTest.Extensions.Tests.Contracts
             "Error".Test(() => Console.Error.WriteLine("This is an error message."));
         }
 
+        [ContractTestCase]
+        public void WithArguments_WithFormatString()
+        {
+            "If {0}, then {1}.".Test((string condition, string result) =>
+            {
+                // Test Case.
+            }).WithArguments(("A", "A'"), ("B", "B'"));
+        }
+
+        [ContractTestCase]
+        public void WithArguments_WithPartialFormatString()
+        {
+            "If {0}, then something...".Test((string condition, string result) =>
+            {
+                // Test Case.
+            }).WithArguments(("A", "A'"), ("B", "B'"));
+        }
+
+        [ContractTestCase]
+        public void WithArguments_WithoutFormatString()
+        {
+            "If something..., then something others...".Test((string condition, string result) =>
+            {
+                // Test Case.
+            }).WithArguments(("A", "A'"), ("B", "B'"));
+        }
 
         [TestMethod, Ignore]
         public void OriginalAssertButFailed()
@@ -34,7 +60,7 @@ namespace MSTest.Extensions.Tests.Contracts
         [ContractTestCase, Ignore]
         public void AssertButFailed()
         {
-            "This test case will always fail.".Test(async () => Assert.AreEqual(5, 6));
+            "This test case will always fail.".Test(() => Assert.AreEqual(5, 6));
         }
 
         [ContractTestCase, Ignore]
