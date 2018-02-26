@@ -119,7 +119,7 @@ namespace MSTest.Extensions.Contracts
 
             if (!testCaseList.Any())
             {
-                testCaseList.Add(new ReadonlyTestCase(
+                testCaseList.Add(new ReadonlyTestCase(UnitTestOutcome.Inconclusive,
                     @"No test found",
                     @"A unit test method should contain at least one test case.
 Try to call Test extension method to collect one.
@@ -167,7 +167,7 @@ If you only need to write a normal test method, use `TestMethodAttribute` instea
 
             foreach (var contract in duplicatedContracts)
             {
-                cases.Add(new ReadonlyTestCase(contract,
+                cases.Add(new ReadonlyTestCase(UnitTestOutcome.Error, contract,
                     $@"Duplicated Contract String
 
 Two or more test cases have the same contract string which is ""{contract}"".

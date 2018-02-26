@@ -31,22 +31,26 @@ namespace MSTest.Extensions.Core
         }
 
         /// <summary>
-        /// Initialize a new instance of <see cref="ReadonlyTestCase"/> to report a specific exception.
+        /// Initialize a new instance of <see cref="ReadonlyTestCase"/> to report a non-success outcome.
         /// </summary>
-        /// <param name="notRunnableName">The name that will be displayed when the test case is not runnable.</param>
-        /// <param name="notRunnableReason">The reason why this test case is not runnable.</param>
-        internal ReadonlyTestCase([NotNull] string notRunnableName, [NotNull] string notRunnableReason)
+        /// <param name="outcome"></param>
+        /// <param name="notSuccessTitle">The name that will be displayed when the test case.</param>
+        /// <param name="notSuccessReason">The reason why this test case is not runnable.</param>
+        internal ReadonlyTestCase(UnitTestOutcome outcome,
+            [NotNull] string notSuccessTitle, [NotNull] string notSuccessReason)
         {
-            if (notRunnableReason == null) throw new ArgumentNullException(nameof(notRunnableReason));
-            DisplayName = notRunnableName ?? throw new ArgumentNullException(nameof(notRunnableName));
+            if (outcome == UnitTestOutcome.Passed)
+                throw new ArgumentException("This constructor only support non-success outcome.", nameof(outcome));
+            if (notSuccessReason == null) throw new ArgumentNullException(nameof(notSuccessReason));
+            DisplayName = notSuccessTitle ?? throw new ArgumentNullException(nameof(notSuccessTitle));
 
             Contract.EndContractBlock();
 
             Result = new TestResult
             {
-                Outcome = UnitTestOutcome.NotRunnable,
-                DisplayName = notRunnableName,
-                TestContextMessages = notRunnableReason,
+                Outcome = outcome,
+                DisplayName = notSuccessTitle,
+                TestContextMessages = notSuccessReason,
             };
         }
 
