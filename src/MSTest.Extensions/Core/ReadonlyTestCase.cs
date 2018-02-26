@@ -18,7 +18,8 @@ namespace MSTest.Extensions.Core
         public ReadonlyTestCase([NotNull] Exception exception, [NotNull] string displayName)
         {
             if (exception == null) throw new ArgumentNullException(nameof(exception));
-            if (displayName == null) throw new ArgumentNullException(nameof(displayName));
+            DisplayName = displayName ?? throw new ArgumentNullException(nameof(displayName));
+
             Contract.EndContractBlock();
 
             Result = new TestResult
@@ -36,8 +37,9 @@ namespace MSTest.Extensions.Core
         /// <param name="notRunnableReason">The reason why this test case is not runnable.</param>
         internal ReadonlyTestCase([NotNull] string notRunnableName, [NotNull] string notRunnableReason)
         {
-            if (notRunnableName == null) throw new ArgumentNullException(nameof(notRunnableName));
             if (notRunnableReason == null) throw new ArgumentNullException(nameof(notRunnableReason));
+            DisplayName = notRunnableName ?? throw new ArgumentNullException(nameof(notRunnableName));
+
             Contract.EndContractBlock();
 
             Result = new TestResult
@@ -47,6 +49,9 @@ namespace MSTest.Extensions.Core
                 TestContextMessages = notRunnableReason,
             };
         }
+
+        /// <inheritdoc />
+        public string DisplayName { get; }
 
         /// <inheritdoc />
         /// <summary>

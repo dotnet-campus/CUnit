@@ -78,7 +78,7 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public string GetDisplayName([NotNull] MethodInfo methodInfo, [NotNull] object[] data)
         {
-            return ContractTest.Method[methodInfo][_testCaseIndex++].Result.DisplayName;
+            return ContractTest.Method[methodInfo][_testCaseIndex++].DisplayName;
         }
 
         #endregion
@@ -137,9 +137,44 @@ If you only need to write a normal test method, use `TestMethodAttribute` instea
             }
         }
 
-
-        private void VerifyContracts(IList<ITestCase> cases)
+        /// <summary>
+        /// Find out the test cases which have the same contract string, add a special exception to it.
+        /// </summary>
+        /// <param name="cases">The test cases of a single test method.</param>
+        private void VerifyContracts([NotNull] IList<ITestCase> cases)
         {
+            var caseContractSet = new HashSet<string>();
+            var duplicatedCases = new HashSet<ITestCase>();
+            var duplicatedContracts = new HashSet<string>();
+
+            foreach (var @case in cases)
+            {
+                if (caseContractSet.Contains(@case.DisplayName))
+                {
+                    duplicatedCases.Add(@case);
+                    duplicatedContracts.Add(@case.DisplayName);
+                }
+                else
+                {
+                    caseContractSet.Add(@case.DisplayName);
+                }
+            }
+
+            foreach (var @case in duplicatedCases)
+            {
+                cases.Remove(@case);
+            }
+
+            foreach (var contract in duplicatedContracts)
+            {
+                cases.Add(new ReadonlyTestCase(contract,
+                    $@"Duplicated Contract String
+
+Two or more test cases have the same contract string which is ""{contract}"".
+1. Please check whether you have created two test cases which have the same contract string. Notice that different formatted string may become the same string when the placeholders are filled with arguments.
+2. If you are using formatted strings but all the value strings are the same(by calling argument.ToString()), please avoid using the formatted contract string. "));
+            }
+
             // throw new NotImplementedException();
         }
 

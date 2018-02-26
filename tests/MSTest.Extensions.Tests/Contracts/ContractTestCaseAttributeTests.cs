@@ -25,6 +25,13 @@ namespace MSTest.Extensions.Tests.Contracts
         }
 
         [ContractTestCase]
+        public void WithArguments_WithSameContractString()
+        {
+            "This is the same string.".Test(() => { });
+            "This is the same string.".Test(() => { });
+        }
+
+        [ContractTestCase]
         public void WithArguments_WithFormatString()
         {
             "If {0}, then {1}.".Test((string condition, string result) =>

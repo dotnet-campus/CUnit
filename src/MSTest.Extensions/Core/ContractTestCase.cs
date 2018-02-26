@@ -47,6 +47,9 @@ namespace MSTest.Extensions.Core
         }
 
         /// <inheritdoc />
+        public string DisplayName => _contract;
+
+        /// <inheritdoc />
         public TestResult Result => _result ?? (_result = Execute());
 
         /// <summary>
