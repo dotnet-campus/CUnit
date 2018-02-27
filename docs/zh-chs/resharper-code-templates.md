@@ -81,3 +81,11 @@ MSTest 有着独特的单元测试编写风格，这意味着目前并没有现�
 依次选中所有种类的模板标签，点击 `导入`，选择从本仓库下载的 [MSTestEnhancer/MSTest.Extensions.sln.DotSettings](/MSTest.Extensions.sln.DotSettings) 文件即可。
 
 ![导入](/docs/images/2018-02-27-12-01-29.png)
+
+在 File Templates 标签的工具栏中选择漏斗状的图标，保持 `Show Predefined Templates` 为选中状态。然后，将 这样可以将我们刚刚导入的模板设置到快速新建的菜单中（也就是本文一开始就贴出的那张添加文件和类的图）。
+
+![Show Predefined Templates](/docs/images/2018-02-27-12-16-05.png)  
+▲ 选中 `显示预定义的模板`
+
+![拖拽到快速列表中](/docs/images/2018-02-27-12-19-51.png)  
+▲ 将导入的模板拖拽到快速列表中
