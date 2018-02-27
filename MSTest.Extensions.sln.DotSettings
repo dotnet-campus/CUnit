@@ -45,4 +45,120 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=TryCastAndCheckForNull_002E1/@EntryIndexedValue">ERROR</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UseNullPropagation/@EntryIndexedValue">WARNING</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UsePatternMatching/@EntryIndexedValue">WARNING</s:String>
-	<s:Boolean x:Key="/Default/Environment/ExcludedFiles/FilesAndFoldersToSkip/=055E6C63_002D3CC7_002D427E_002DB14F_002D69C85D7E971A_002Fd_003ACore_002Ff_003AThreadSafeStringWriter_002Ecs/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/Environment/ExcludedFiles/FilesAndFoldersToSkip/=055E6C63_002D3CC7_002D427E_002DB14F_002D69C85D7E971A_002Fd_003ACore_002Ff_003AThreadSafeStringWriter_002Ecs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Applicability/=Surround/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Description/@EntryValue">包装成契约式单元测试</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/IsBlessed/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Mnemonic/@EntryValue">5</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/Type/@EntryValue">InCSharpStatement</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/Type/@EntryValue">InCSharpExpression</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Shortcut/@EntryValue">test</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Text/@EntryValue">"$contract$".Test(() =&gt;&#xD;
+{&#xD;
+	$SELECTION$&#xD;
+});</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/CustomProperties/=FileName/@EntryIndexedValue">UnitTest</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/CustomProperties/=ValidateFileName/@EntryIndexedValue">False</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Description/@EntryValue">Contract Unit Test</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/Expression/@EntryValue">fileDefaultNamespace()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/Order/@EntryValue">2</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/Expression/@EntryValue">fileheader()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/Expression/@EntryValue">getAlphaNumericFileNameWithoutExtension()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Text/@EntryValue">$HEADER$using MSTest.Extensions.Contracts;&#xD;
+namespace $NAMESPACE$&#xD;
+{&#xD;
+    public class $CLASS$&#xD;
+    {&#xD;
+	    [MSTest.Extensions.Contracts.ContractTestCase]&#xD;
+		public void Test1()&#xD;
+		{&#xD;
+			"$SELSTART$Please type a test contract here...$SELEND$".Test(() =&gt;&#xD;
+			{&#xD;
+				// Arrange&#xD;
+&#xD;
+				// Action&#xD;
+		&#xD;
+				// Assert&#xD;
+			});&#xD;
+		}&#xD;
+    }&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Description/@EntryValue">插入契约式单元测试</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/Type/@EntryValue">InCSharpStatement</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Scope/=E6E678D4B937A84D8C4585DDD2F27DB0/Type/@EntryValue">InCSharpExpression</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Shortcut/@EntryValue">test</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Text/@EntryValue">"$contract$".Test(() =&gt;&#xD;
+{&#xD;
+	// Arrange&#xD;
+	$SELSTART$// TODO: Write your test case here...$SELEND$&#xD;
+&#xD;
+	// Action&#xD;
+		&#xD;
+	// Assert&#xD;
+});</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Description/@EntryValue">插入契约式单元测试</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=TheMethodNameYouWantToTest/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=TheMethodNameYouWantToTest/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/Type/@EntryValue">InCSharpTypeMember</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Shortcut/@EntryValue">test</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Text/@EntryValue">[MSTest.Extensions.Contracts.ContractTestCase]&#xD;
+public void $TheMethodNameYouWantToTest$()&#xD;
+{&#xD;
+    "$contract$".Test(() =&gt;&#xD;
+    {&#xD;
+	    // Arrange&#xD;
+		$SELSTART$// TODO: Write your test case here...$SELEND$&#xD;
+&#xD;
+		// Action&#xD;
+		&#xD;
+		// Assert&#xD;
+    });&#xD;
+}</s:String></wpf:ResourceDictionary>
