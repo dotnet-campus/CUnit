@@ -46,10 +46,15 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UseNullPropagation/@EntryIndexedValue">WARNING</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UsePatternMatching/@EntryIndexedValue">WARNING</s:String>
 	<s:Boolean x:Key="/Default/Environment/ExcludedFiles/FilesAndFoldersToSkip/=055E6C63_002D3CC7_002D427E_002DB14F_002D69C85D7E971A_002Fd_003ACore_002Ff_003AThreadSafeStringWriter_002Ecs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=19DDC63B552A8444AA706A40E6D77469/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=19DDC63B552A8444AA706A40E6D77469/EntryName/@EntryValue">Contract Unit Test</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=19DDC63B552A8444AA706A40E6D77469/Position/@EntryValue">4</s:Int64>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=40C163D436D8ED48A6D01A0AFEFC5556/EntryName/@EntryValue">Test Fixture</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=40C163D436D8ED48A6D01A0AFEFC5556/Position/@EntryValue">5</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Applicability/=Surround/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Description/@EntryValue">包装成契约式单元测试</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Description/@EntryValue">Convert to MSTestEnhancer test case</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=16680BC86B56244A825D3E658695F84F/Field/=contract/Order/@EntryValue">0</s:Int64>
@@ -76,14 +81,14 @@
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/CustomProperties/=ValidateFileName/@EntryIndexedValue">False</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Description/@EntryValue">Contract Unit Test</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/Expression/@EntryValue">fileDefaultNamespace()</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/Expression/@EntryValue">getAlphaNumericFileNameWithoutExtension()</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/InitialRange/@EntryValue">-1</s:Int64>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=CLASS/Order/@EntryValue">2</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/Expression/@EntryValue">fileheader()</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=HEADER/Order/@EntryValue">0</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/Expression/@EntryValue">getAlphaNumericFileNameWithoutExtension()</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/Expression/@EntryValue">fileDefaultNamespace()</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/InitialRange/@EntryValue">-1</s:Int64>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Field/=NAMESPACE/Order/@EntryValue">1</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=19DDC63B552A8444AA706A40E6D77469/Reformat/@EntryValue">True</s:Boolean>
@@ -112,7 +117,7 @@ namespace $NAMESPACE$&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Description/@EntryValue">插入契约式单元测试</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Description/@EntryValue">Insert a test case</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3FF2B0D5FF6F08488603D663F2EC5631/Field/=contract/Order/@EntryValue">0</s:Int64>
@@ -137,7 +142,7 @@ namespace $NAMESPACE$&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Categories/=Unit_0020Tests/@EntryIndexedValue">Unit Tests</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Description/@EntryValue">插入契约式单元测试</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Description/@EntryValue">Insert a test method</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/Expression/@EntryValue">constant("Please type a test contract here...")</s:String>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CADEB1A96B5DFF488E3340E7282697C9/Field/=contract/Order/@EntryValue">1</s:Int64>
