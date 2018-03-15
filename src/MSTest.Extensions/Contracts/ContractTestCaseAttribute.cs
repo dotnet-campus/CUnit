@@ -31,102 +31,21 @@ namespace MSTest.Extensions.Contracts
     [PublicAPI]
     public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
-        private object _classInfo;
-        private object _baseTestInitializeMethodsQueue;
-        private object _baseTestCleanupMethodsQueue;
-        private object _testInitializeMethod;
-        private object _testCleanupMethod;
+
         #region Instance derived from TestMethodAttribute
 
         /// <inheritdoc />
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
-            TestMethodInitialize(testMethod);
-            var testCases = ContractTest.Method[testMethod.MethodInfo];
-            var result = testCases[_testCaseIndex++].Result;
-            TestMethodCleanup(testMethod);
+            if (_testMethodProxy is null)
+            {
+                _testMethodProxy = new TestMethodProxy(testMethod);
+            }
+
+            var result = _testMethodProxy.Invoke(null);
             return new[] { result };
         }
-
-        private void TestMethodInitialize([NotNull]ITestMethod testMethod)
-        {
-            var classInfo = GetClassInfo(testMethod);
-            //下面的代码保证第一次跑的时候初始化
-            GetBaseTestInitializeMethodsQueue(classInfo);
-            GetBaseTestCleanupMethodsQueue(classInfo);
-            GetTestInitializeMethod(classInfo);
-            GetTestCleanupMethod(classInfo);
-            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
-            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
-            var testCases = ContractTest.Method[testMethod.MethodInfo];
-            testCases.Clear();
-            testMethod.Invoke(null);
-        }
-
-        private void TestMethodCleanup([NotNull]ITestMethod testMethod)
-        {
-            var classInfo = GetClassInfo(testMethod);
-            var baseTestInitializeMethodsQueue = GetBaseTestInitializeMethodsQueue(classInfo);
-            var baseTestCleanupMethodsQueue = GetBaseTestCleanupMethodsQueue(classInfo);
-            var testInitializeMethod = GetTestInitializeMethod(classInfo);
-            var testCleanupMethod = GetTestCleanupMethod(classInfo);
-            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, baseTestCleanupMethodsQueue);
-            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, testCleanupMethod);
-            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, new Queue<MethodInfo>());
-            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
-            testMethod.Invoke(null);
-            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
-            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
-        }
-
-        private object GetTestCleanupMethod([NotNull]object classInfo)
-        {
-            if (_testCleanupMethod is null)
-            {
-                _testCleanupMethod = classInfo.GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
-            }
-            return _testCleanupMethod;
-        }
-
-        private object GetTestInitializeMethod([NotNull]object classInfo)
-        {
-            if (_testInitializeMethod is null)
-            {
-                _testInitializeMethod = classInfo.GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
-            }
-            return _testInitializeMethod;
-        }
-
-        private object GetBaseTestCleanupMethodsQueue([NotNull]object classInfo)
-        {
-            if (_baseTestCleanupMethodsQueue is null)
-            {
-                _baseTestCleanupMethodsQueue = classInfo.GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
-            }
-            return _baseTestCleanupMethodsQueue;
-        }
-
-        private object GetClassInfo([NotNull] object testMethod)
-        {
-            if (_classInfo is null)
-            {
-                _classInfo = testMethod.GetProperty(MSTestMemberName.TestMethodInfoPropertyParent);
-            }
-            return _classInfo;
-        }
-
-        private object GetBaseTestInitializeMethodsQueue([NotNull] object classInfo)
-        {
-            if (_baseTestInitializeMethodsQueue is null)
-            {
-                _baseTestInitializeMethodsQueue = classInfo.GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
-            }
-            return _baseTestInitializeMethodsQueue;
-        }
-
-
-
 
         #endregion
 
@@ -273,5 +192,10 @@ Two or more test cases have the same contract string which is ""{contract}"".
         /// because they are not in the same instance.
         /// </summary>
         private int _testCaseIndex;
+        /// <summary>
+        /// the proxy of ITestMethod(TestMethodInfo in fact)
+        /// overwrite the invoke method
+        /// </summary>
+        private ITestMethod _testMethodProxy;
     }
 }
