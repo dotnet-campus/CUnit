@@ -31,17 +31,22 @@ namespace MSTest.Extensions.Contracts
     [PublicAPI]
     public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
+        private object _classInfo;
+        private object _baseTestInitializeMethodsQueue;
+        private object _baseTestCleanupMethodsQueue;
+        private object _testInitializeMethod;
+        private object _testCleanupMethod;
         #region Instance derived from TestMethodAttribute
 
         /// <inheritdoc />
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
-            var classInfo = ReflectionHelper.GetProperty(testMethod, MsTestMemberName.TestMethodInfoPropertyParent);
-            var baseTestInitializeMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
-            var baseTestCleanupMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
-            var testInitializeMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod);
-            var testCleanupMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod);
+            var classInfo = GetClassInfo(testMethod);
+            var baseTestInitializeMethodsQueue = GetBaseTestInitializeMethodsQueue(classInfo);
+            var baseTestCleanupMethodsQueue = GetBaseTestCleanupMethodsQueue(classInfo);
+            var testInitializeMethod = GetTestInitializeMethod(classInfo);
+            var testCleanupMethod = GetTestCleanupMethod(classInfo);
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
             ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
             var testCases = ContractTest.Method[testMethod.MethodInfo];
@@ -56,6 +61,51 @@ namespace MSTest.Extensions.Contracts
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
             ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
             return new[] { result };
+        }
+
+        private object GetTestCleanupMethod(object classInfo)
+        {
+            if (_testCleanupMethod is null)
+            {
+                _testCleanupMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod);
+            }
+            return _testCleanupMethod;
+        }
+
+        private object GetTestInitializeMethod(object classInfo)
+        {
+            if (_testInitializeMethod is null)
+            {
+                _testInitializeMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod);
+            }
+            return _testInitializeMethod;
+        }
+
+        private object GetBaseTestCleanupMethodsQueue([NotNull]object classInfo)
+        {
+            if (_baseTestCleanupMethodsQueue is null)
+            {
+                _baseTestCleanupMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
+            }
+            return _baseTestCleanupMethodsQueue;
+        }
+
+        private object GetClassInfo([NotNull] object testMethod)
+        {
+            if (_classInfo is null)
+            {
+                _classInfo = ReflectionHelper.GetProperty(testMethod, MsTestMemberName.TestMethodInfoPropertyParent);
+            }
+            return _classInfo;
+        }
+
+        private object GetBaseTestInitializeMethodsQueue([NotNull] object classInfo)
+        {
+            if (_baseTestInitializeMethodsQueue is null)
+            {
+                _baseTestInitializeMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
+            }
+            return _baseTestInitializeMethodsQueue;
         }
 
 
