@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Core;
+using MSTest.Extensions.Utils;
 
 // ## How it works?
 // 
@@ -36,58 +37,28 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
-            var classInfo = GetProperty(testMethod, "Parent");
-            var baseTestInitializeMethodsQueue = GetProperty(classInfo, "BaseTestInitializeMethodsQueue");
-            var baseTestCleanupMethodsQueue = GetProperty(classInfo, "BaseTestCleanupMethodsQueue");
-            var testInitializeMethod = GetField(classInfo, "testInitializeMethod");
-            var testCleanupMethod = GetField(classInfo, "testCleanupMethod");
-            SetProperty(classInfo, "BaseTestCleanupMethodsQueue", new Queue<MethodInfo>());
-            SetField(classInfo, "testCleanupMethod", null);
+            var classInfo = ReflectionHelper.GetProperty(testMethod, MsTestMemberName.TestMethodInfoPropertyParent);
+            var baseTestInitializeMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
+            var baseTestCleanupMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
+            var testInitializeMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod);
+            var testCleanupMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod);
+            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
+            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
             var testCases = ContractTest.Method[testMethod.MethodInfo];
             testCases.Clear();
             testMethod.Invoke(null);
-            //var testCases = new List<ITestCase>(ContractTest.Method[testMethod.MethodInfo]);
             var result = testCases[_testCaseIndex++].Result;
-            SetProperty(classInfo, "BaseTestCleanupMethodsQueue", baseTestCleanupMethodsQueue);
-            SetField(classInfo, "testCleanupMethod", testCleanupMethod);
-            SetProperty(classInfo, "BaseTestInitializeMethodsQueue", new Queue<MethodInfo>());
-            SetField(classInfo, "testInitializeMethod", null);
+            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, baseTestCleanupMethodsQueue);
+            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, testCleanupMethod);
+            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, new Queue<MethodInfo>());
+            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
             testMethod.Invoke(null);
-            SetProperty(classInfo, "BaseTestInitializeMethodsQueue", baseTestInitializeMethodsQueue);
-            SetField(classInfo, "testInitializeMethod", testInitializeMethod);
+            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
+            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
             return new[] { result };
         }
 
 
-        public object GetField(object source, string propertyName)
-        {
-            var type = source.GetType();
-            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            return field.GetValue(source);
-        }
-
-        public object GetProperty(object source, string propertyName)
-        {
-            var type = source.GetType();
-            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            return property.GetValue(source);
-        }
-
-        public void SetField(object target, string propertyName, object value)
-        {
-            var type = target.GetType();
-            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            field.SetValue(target, value);
-
-        }
-
-        public void SetProperty(object target, string propertyName, object value)
-        {
-            var type = target.GetType();
-            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            property.SetValue(target, value);
-
-        }
 
 
         #endregion
