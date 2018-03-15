@@ -36,10 +36,59 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
-            var contractTestCases = ContractTest.Method[testMethod.MethodInfo];
-            var result = contractTestCases[_testCaseIndex++].Result;
+            var classInfo = GetProperty(testMethod, "Parent");
+            var baseTestInitializeMethodsQueue = GetProperty(classInfo, "BaseTestInitializeMethodsQueue");
+            var baseTestCleanupMethodsQueue = GetProperty(classInfo, "BaseTestCleanupMethodsQueue");
+            var testInitializeMethod = GetField(classInfo, "testInitializeMethod");
+            var testCleanupMethod = GetField(classInfo, "testCleanupMethod");
+            SetProperty(classInfo, "BaseTestCleanupMethodsQueue", new Queue<MethodInfo>());
+            SetField(classInfo, "testCleanupMethod", null);
+            var testCases = ContractTest.Method[testMethod.MethodInfo];
+            testCases.Clear();
+            testMethod.Invoke(null);
+            //var testCases = new List<ITestCase>(ContractTest.Method[testMethod.MethodInfo]);
+            var result = testCases[_testCaseIndex++].Result;
+            SetProperty(classInfo, "BaseTestCleanupMethodsQueue", baseTestCleanupMethodsQueue);
+            SetField(classInfo, "testCleanupMethod", testCleanupMethod);
+            SetProperty(classInfo, "BaseTestInitializeMethodsQueue", new Queue<MethodInfo>());
+            SetField(classInfo, "testInitializeMethod", null);
+            testMethod.Invoke(null);
+            SetProperty(classInfo, "BaseTestInitializeMethodsQueue", baseTestInitializeMethodsQueue);
+            SetField(classInfo, "testInitializeMethod", testInitializeMethod);
             return new[] { result };
         }
+
+
+        public object GetField(object source, string propertyName)
+        {
+            var type = source.GetType();
+            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return field.GetValue(source);
+        }
+
+        public object GetProperty(object source, string propertyName)
+        {
+            var type = source.GetType();
+            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return property.GetValue(source);
+        }
+
+        public void SetField(object target, string propertyName, object value)
+        {
+            var type = target.GetType();
+            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            field.SetValue(target, value);
+
+        }
+
+        public void SetProperty(object target, string propertyName, object value)
+        {
+            var type = target.GetType();
+            var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            property.SetValue(target, value);
+
+        }
+
 
         #endregion
 
