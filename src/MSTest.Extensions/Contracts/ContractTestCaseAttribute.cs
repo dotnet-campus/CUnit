@@ -42,17 +42,35 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
+            TestMethodInitialize(testMethod);
+            var testCases = ContractTest.Method[testMethod.MethodInfo];
+            var result = testCases[_testCaseIndex++].Result;
+            TestMethodCleanup(testMethod);
+            return new[] { result };
+        }
+
+        private void TestMethodInitialize([NotNull]ITestMethod testMethod)
+        {
             var classInfo = GetClassInfo(testMethod);
-            var baseTestInitializeMethodsQueue = GetBaseTestInitializeMethodsQueue(classInfo);
-            var baseTestCleanupMethodsQueue = GetBaseTestCleanupMethodsQueue(classInfo);
-            var testInitializeMethod = GetTestInitializeMethod(classInfo);
-            var testCleanupMethod = GetTestCleanupMethod(classInfo);
+            //下面的代码保证第一次跑的时候初始化
+            GetBaseTestInitializeMethodsQueue(classInfo);
+            GetBaseTestCleanupMethodsQueue(classInfo);
+            GetTestInitializeMethod(classInfo);
+            GetTestCleanupMethod(classInfo);
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
             ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
             var testCases = ContractTest.Method[testMethod.MethodInfo];
             testCases.Clear();
             testMethod.Invoke(null);
-            var result = testCases[_testCaseIndex++].Result;
+        }
+
+        private void TestMethodCleanup([NotNull]ITestMethod testMethod)
+        {
+            var classInfo = GetClassInfo(testMethod);
+            var baseTestInitializeMethodsQueue = GetBaseTestInitializeMethodsQueue(classInfo);
+            var baseTestCleanupMethodsQueue = GetBaseTestCleanupMethodsQueue(classInfo);
+            var testInitializeMethod = GetTestInitializeMethod(classInfo);
+            var testCleanupMethod = GetTestCleanupMethod(classInfo);
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, baseTestCleanupMethodsQueue);
             ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, testCleanupMethod);
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, new Queue<MethodInfo>());
@@ -60,7 +78,6 @@ namespace MSTest.Extensions.Contracts
             testMethod.Invoke(null);
             ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
             ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
-            return new[] { result };
         }
 
         private object GetTestCleanupMethod(object classInfo)
