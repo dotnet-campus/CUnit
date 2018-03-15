@@ -195,6 +195,7 @@ Two or more test cases have the same contract string which is ""{contract}"".
         /// <summary>
         /// the proxy of ITestMethod(TestMethodInfo in fact)
         /// overwrite the invoke method
+        /// only one instance in one ContractTestCaseAttribute
         /// </summary>
         private ITestMethod _testMethodProxy;
     }
