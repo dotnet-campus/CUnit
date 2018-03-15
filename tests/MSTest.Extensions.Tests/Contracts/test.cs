@@ -6,7 +6,7 @@ namespace MSTest.Extensions.Tests.Contracts
     [TestClass]
     public class Test
     {
-        private int n = 0;
+        private static int n = 0;
         [Extensions.Contracts.ContractTestCase]
         public void TheMethodNameYouWantToTest()
         {
