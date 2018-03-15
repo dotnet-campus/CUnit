@@ -3,54 +3,54 @@
 namespace MSTest.Extensions.Utils
 {
     /// <summary>
-    /// 反射辅助类
+    /// object extension.used for getting/setting both public and nonpublic property or field of an instance
     /// </summary>
-    public static class ReflectionHelper
+    public static class ReflectionExtensions
     {
         /// <summary>
-        /// 获取字段值
+        /// used for getting both public and nonpublic field of an instance
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="fieldName"></param>
         /// <returns></returns>
-        public static object GetField([NotNull] object source, string propertyName)
+        public static object GetField([NotNull]this object source, string fieldName)
         {
             var type = source.GetType();
-            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             return field.GetValue(source);
         }
         /// <summary>
-        /// 获取属性值
+        /// used for getting both public and nonpublic property of an instance
         /// </summary>
         /// <param name="source"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static object GetProperty([NotNull] object source, string propertyName)
+        public static object GetProperty([NotNull]this object source, string propertyName)
         {
             var type = source.GetType();
             var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             return property.GetValue(source);
         }
         /// <summary>
-        /// 设置字段值
+        /// used for setting both public and nonpublic field of an instance
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="fieldName"></param>
         /// <param name="value"></param>
-        public static void SetField([NotNull] object target, string propertyName, object value)
+        public static void SetField([NotNull]this object target, string fieldName, object value)
         {
             var type = target.GetType();
-            var field = type.GetField(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             field.SetValue(target, value);
 
         }
         /// <summary>
-        /// 设置属性值
+        /// used for getting both public and nonpublic property of an instance
         /// </summary>
         /// <param name="target"></param>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public static void SetProperty([NotNull] object target, string propertyName, object value)
+        public static void SetProperty([NotNull]this object target, string propertyName, object value)
         {
             var type = target.GetType();
             var property = type.GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);

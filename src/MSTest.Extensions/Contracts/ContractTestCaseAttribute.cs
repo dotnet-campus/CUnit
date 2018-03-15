@@ -57,8 +57,8 @@ namespace MSTest.Extensions.Contracts
             GetBaseTestCleanupMethodsQueue(classInfo);
             GetTestInitializeMethod(classInfo);
             GetTestCleanupMethod(classInfo);
-            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
-            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
+            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, new Queue<MethodInfo>());
+            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
             var testCases = ContractTest.Method[testMethod.MethodInfo];
             testCases.Clear();
             testMethod.Invoke(null);
@@ -71,29 +71,29 @@ namespace MSTest.Extensions.Contracts
             var baseTestCleanupMethodsQueue = GetBaseTestCleanupMethodsQueue(classInfo);
             var testInitializeMethod = GetTestInitializeMethod(classInfo);
             var testCleanupMethod = GetTestCleanupMethod(classInfo);
-            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, baseTestCleanupMethodsQueue);
-            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod, testCleanupMethod);
-            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, new Queue<MethodInfo>());
-            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
+            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue, baseTestCleanupMethodsQueue);
+            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, testCleanupMethod);
+            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, new Queue<MethodInfo>());
+            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
             testMethod.Invoke(null);
-            ReflectionHelper.SetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
-            ReflectionHelper.SetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
+            classInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue, baseTestInitializeMethodsQueue);
+            classInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, testInitializeMethod);
         }
 
-        private object GetTestCleanupMethod(object classInfo)
+        private object GetTestCleanupMethod([NotNull]object classInfo)
         {
             if (_testCleanupMethod is null)
             {
-                _testCleanupMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestCleanupMethod);
+                _testCleanupMethod = classInfo.GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
             }
             return _testCleanupMethod;
         }
 
-        private object GetTestInitializeMethod(object classInfo)
+        private object GetTestInitializeMethod([NotNull]object classInfo)
         {
             if (_testInitializeMethod is null)
             {
-                _testInitializeMethod = ReflectionHelper.GetField(classInfo, MsTestMemberName.TestClassInfoFieldTestInitializeMethod);
+                _testInitializeMethod = classInfo.GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
             }
             return _testInitializeMethod;
         }
@@ -102,7 +102,7 @@ namespace MSTest.Extensions.Contracts
         {
             if (_baseTestCleanupMethodsQueue is null)
             {
-                _baseTestCleanupMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
+                _baseTestCleanupMethodsQueue = classInfo.GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
             }
             return _baseTestCleanupMethodsQueue;
         }
@@ -111,7 +111,7 @@ namespace MSTest.Extensions.Contracts
         {
             if (_classInfo is null)
             {
-                _classInfo = ReflectionHelper.GetProperty(testMethod, MsTestMemberName.TestMethodInfoPropertyParent);
+                _classInfo = testMethod.GetProperty(MSTestMemberName.TestMethodInfoPropertyParent);
             }
             return _classInfo;
         }
@@ -120,7 +120,7 @@ namespace MSTest.Extensions.Contracts
         {
             if (_baseTestInitializeMethodsQueue is null)
             {
-                _baseTestInitializeMethodsQueue = ReflectionHelper.GetProperty(classInfo, MsTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
+                _baseTestInitializeMethodsQueue = classInfo.GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
             }
             return _baseTestInitializeMethodsQueue;
         }

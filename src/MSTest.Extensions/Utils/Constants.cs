@@ -1,6 +1,9 @@
 ﻿namespace MSTest.Extensions.Utils
 {
-    public static class MsTestMemberName
+    /// <summary>
+    /// The member name in tesetfx, used for reflection
+    /// </summary>
+    public static class MSTestMemberName
     {
         public const string TestMethodInfoPropertyParent = "Parent";
         public const string TestClassInfoPropertyBaseTestInitializeMethodsQueue = "BaseTestInitializeMethodsQueue";
