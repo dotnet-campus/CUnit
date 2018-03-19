@@ -31,7 +31,6 @@ namespace MSTest.Extensions.Contracts
     [PublicAPI]
     public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
-
         #region Instance derived from TestMethodAttribute
 
         /// <inheritdoc />
@@ -192,6 +191,7 @@ Two or more test cases have the same contract string which is ""{contract}"".
         /// because they are not in the same instance.
         /// </summary>
         private int _testCaseIndex;
+
         /// <summary>
         /// the proxy of ITestMethod(TestMethodInfo in fact)
         /// overwrite the invoke method
