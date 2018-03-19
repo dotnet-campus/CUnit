@@ -40,11 +40,25 @@ namespace MSTest.Extensions.Tests.Contracts
             }
         }
 
-        [TestMethod, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void WithArgument_NullArray_ArgumentNullExceptionThrown()
+        [TestMethod]
+        public void WithArgument_NullAsSingleArgument_TestCaseCreated()
         {
             // Arrange
             var context = new ContractTestContext<int>("", a => { });
+
+            // Action
+            context.WithArguments(null);
+
+            // Assert
+            var cases = ContractTest.Method.Current;
+            Assert.AreEqual(1, cases.Count);
+        }
+
+        [TestMethod, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void WithArgument_NullArrayForTwoArguments_ArgumentNullExceptionThrown()
+        {
+            // Arrange
+            var context = new ContractTestContext<int,int>("", (a,b) => { });
 
             // Action & Assert
             Assert.ThrowsException<ArgumentNullException>(() => context.WithArguments(null));

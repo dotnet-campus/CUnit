@@ -51,18 +51,29 @@ namespace MSTest.Extensions.Contracts
         /// <remarks>
         /// Note that we only verify the <paramref name="ts"/> argument in runtime. In this case, we have the power to pass an array instead of writing them all in a method parameter list.
         /// </remarks>
+#if GENERATED_CODE
         [NotNull, PublicAPI]
         public ContractTestContext<T> WithArguments([NotNull] params T[] ts)
         {
-            if (ts == null) throw new ArgumentNullException(nameof(ts));
-            if (ts.Length < 1)
+           if (ts == null) throw new ArgumentNullException(nameof(ts));
+#else
+        [NotNull, PublicAPI]
+        public ContractTestContext<T> WithArguments([CanBeNull] params T[] ts)
+        {
+#endif
+            if (ts != null && ts.Length < 1)
             {
                 throw new ArgumentException(
                     $"At least one argument should be passed into test case {_contract}", nameof(ts));
             }
-
             Contract.EndContractBlock();
 
+#if !GENERATED_CODE
+            if (ts == null)
+            {
+                ts = new T[] { default };
+            }
+#endif
             // Check if every argument will be formatted into the contract.
             var allFormatted = true;
             for (var i = 0; i < ts.Length; i++)
