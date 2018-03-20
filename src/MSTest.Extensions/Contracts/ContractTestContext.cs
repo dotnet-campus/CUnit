@@ -2,6 +2,11 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using MSTest.Extensions.Core;
+#if GENERATED_CODE
+using CanBeNullWhenTIsSingle = MSTest.Extensions.NotNullAttribute;
+#else
+using CanBeNullWhenTIsSingle = MSTest.Extensions.CanBeNullAttribute;
+#endif
 
 namespace MSTest.Extensions.Contracts
 {
@@ -52,16 +57,17 @@ namespace MSTest.Extensions.Contracts
         /// Note that we only verify the <paramref name="ts"/> argument in runtime. In this case, we have the power to pass an array instead of writing them all in a method parameter list.
         /// </remarks>
         [NotNull, PublicAPI]
+        public ContractTestContext<T> WithArguments([CanBeNullWhenTIsSingle] params T[] ts)
+        {
+            if (ts == null)
+            {
 #if GENERATED_CODE
-        public ContractTestContext<T> WithArguments([NotNull] params T[] ts)
-        {
-            if (ts == null) throw new ArgumentNullException(nameof(ts));
-            if (ts.Length < 1)
+                throw new ArgumentNullException(nameof(ts));
 #else
-        public ContractTestContext<T> WithArguments([CanBeNull] params T[] ts)
-        {
-            if (ts != null && ts.Length < 1)
+                ts = new T[] { default };
 #endif
+            }
+            if (ts.Length < 1)
             {
                 throw new ArgumentException(
                     $"At least one argument should be passed into test case {_contract}", nameof(ts));
@@ -69,10 +75,6 @@ namespace MSTest.Extensions.Contracts
             Contract.EndContractBlock();
 
 #if !GENERATED_CODE
-            if (ts == null)
-            {
-                ts = new T[] { default };
-            }
 #endif
             // Check if every argument will be formatted into the contract.
             var allFormatted = true;
