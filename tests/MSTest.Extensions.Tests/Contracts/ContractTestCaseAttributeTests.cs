@@ -24,7 +24,7 @@ namespace MSTest.Extensions.Tests.Contracts
             "Error".Test(() => Console.Error.WriteLine("This is an error message."));
         }
 
-        [ContractTestCase,Ignore]
+        [ContractTestCase, Ignore]
         public void WithArguments_WithSameContractString()
         {
             "This is the same string.".Test(() => { });
