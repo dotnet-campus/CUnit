@@ -86,7 +86,7 @@ namespace MSTest.Extensions.Contracts
 
             foreach (var t in ts)
             {
-                //For null,the formatted string is Null
+                // For null, the formatted string is "Null".
                 var argumentString = t == null ? "Null" : t.ToString();
                 // If any argument is not formatted, post the argument value at the end of the contract string.
                 var contract = string.Format(_contract, argumentString);
