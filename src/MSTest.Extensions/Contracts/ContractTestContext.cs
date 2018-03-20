@@ -2,6 +2,11 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using MSTest.Extensions.Core;
+#if GENERATED_CODE
+using CanBeNullWhenTIsSingle = MSTest.Extensions.NotNullAttribute;
+#else
+using CanBeNullWhenTIsSingle = MSTest.Extensions.CanBeNullAttribute;
+#endif
 
 namespace MSTest.Extensions.Contracts
 {
@@ -52,17 +57,25 @@ namespace MSTest.Extensions.Contracts
         /// Note that we only verify the <paramref name="ts"/> argument in runtime. In this case, we have the power to pass an array instead of writing them all in a method parameter list.
         /// </remarks>
         [NotNull, PublicAPI]
-        public ContractTestContext<T> WithArguments([NotNull] params T[] ts)
+        public ContractTestContext<T> WithArguments([CanBeNullWhenTIsSingle] params T[] ts)
         {
-            if (ts == null) throw new ArgumentNullException(nameof(ts));
+            if (ts == null)
+            {
+#if GENERATED_CODE
+                throw new ArgumentNullException(nameof(ts));
+#else
+                ts = new T[] { default };
+#endif
+            }
             if (ts.Length < 1)
             {
                 throw new ArgumentException(
                     $"At least one argument should be passed into test case {_contract}", nameof(ts));
             }
-
             Contract.EndContractBlock();
 
+#if !GENERATED_CODE
+#endif
             // Check if every argument will be formatted into the contract.
             var allFormatted = true;
             for (var i = 0; i < ts.Length; i++)
@@ -73,11 +86,13 @@ namespace MSTest.Extensions.Contracts
 
             foreach (var t in ts)
             {
+                // For null, the formatted string is "Null".
+                var argumentString = t == null ? "Null" : t.ToString();
                 // If any argument is not formatted, post the argument value at the end of the contract string.
-                var contract = string.Format(_contract, t);
+                var contract = string.Format(_contract, argumentString);
                 if (!allFormatted)
                 {
-                    contract = contract + $"({t})";
+                    contract = contract + $"({argumentString})";
                 }
 
                 // Add an argument test case to the test case list.

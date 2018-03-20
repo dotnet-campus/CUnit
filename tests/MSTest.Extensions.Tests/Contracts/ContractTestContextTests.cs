@@ -40,11 +40,55 @@ namespace MSTest.Extensions.Tests.Contracts
             }
         }
 
-        [TestMethod, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-        public void WithArgument_NullArray_ArgumentNullExceptionThrown()
+        [TestMethod]
+        public void WithArgument_NullAsSingleArgument_TestCaseCreated()
         {
             // Arrange
             var context = new ContractTestContext<int>("", a => { });
+
+            // Action
+            context.WithArguments(null);
+
+            // Assert
+            var cases = ContractTest.Method.Current;
+            Assert.AreEqual(1, cases.Count);
+        }
+
+        [TestMethod]
+        public void WithArgument_NullAsSingleArgument_TestCaseContractAppendNull()
+        {
+            // Arrange
+            var context = new ContractTestContext<string>("My money is ", a => { });
+
+            // Action
+            context.WithArguments(null);
+
+            // Assert
+            var cases = ContractTest.Method.Current;
+            var contract = cases[0].DisplayName;
+            Assert.AreEqual("My money is (Null)", contract);
+        }
+
+        [TestMethod]
+        public void WithArgument_NullAsSingleArgumentForFormattedContract_TestCaseContractFormattedNull()
+        {
+            // Arrange
+            var context = new ContractTestContext<string>("{0} is my money", a => { });
+
+            // Action
+            context.WithArguments(null);
+
+            // Assert
+            var cases = ContractTest.Method.Current;
+            var contract = cases[0].DisplayName;
+            Assert.AreEqual("Null is my money", contract);
+        }
+
+        [TestMethod, SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void WithArgument_NullArrayForTwoArguments_ArgumentNullExceptionThrown()
+        {
+            // Arrange
+            var context = new ContractTestContext<int,int>("", (a,b) => { });
 
             // Action & Assert
             Assert.ThrowsException<ArgumentNullException>(() => context.WithArguments(null));
