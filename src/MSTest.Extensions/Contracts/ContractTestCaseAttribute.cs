@@ -43,7 +43,7 @@ namespace MSTest.Extensions.Contracts
             }
 
             var result = _testMethodProxy.Invoke(null);
-            return new[] { result };
+            return new[] {result};
         }
 
         #endregion
