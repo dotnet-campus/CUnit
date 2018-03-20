@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using MSTest.Extensions.Core;
 #if GENERATED_CODE
@@ -86,13 +87,11 @@ namespace MSTest.Extensions.Contracts
 
             foreach (var t in ts)
             {
-                // For null, the formatted string is "Null".
-                var argumentString = t == null ? "Null" : t.ToString();
                 // If any argument is not formatted, post the argument value at the end of the contract string.
-                var contract = string.Format(_contract, argumentString);
+                var contract = string.Format(_contract, ForT(t));
                 if (!allFormatted)
                 {
-                    contract = contract + $"({argumentString})";
+                    contract = contract + $"({ForT(t)})";
                 }
 
                 // Add an argument test case to the test case list.
@@ -100,6 +99,15 @@ namespace MSTest.Extensions.Contracts
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// For null value, the formatted string is "Null".
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private string ForT<TInput>([CanBeNull] TInput value)
+        {
+            return value == null ? "Null" : value.ToString();
         }
 
 #if GENERATED_CODE

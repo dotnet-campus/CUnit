@@ -39,6 +39,8 @@ $@"//---------------------------------------------------------------------------
         {
             var content = _genericTemplate
                 // 替换泛型。
+                .Replace("{ForT(t)}", FromTemplate("{0}", "{ForT(t{n})}", ", ", genericCount))
+                .Replace("ForT(t)", FromTemplate("{0}", "ForT(t{n})", ", ", genericCount))
                 .Replace(" T[] ", FromTemplate(" ({0})[] ", "T{n}", ", ", genericCount))
                 .Replace("<out T>", FromTemplate("<{0}>", "out T{n}", ", ", genericCount))
                 .Replace("Task<T>", FromTemplate("Task<({0})>", "T{n}", ", ", genericCount))
