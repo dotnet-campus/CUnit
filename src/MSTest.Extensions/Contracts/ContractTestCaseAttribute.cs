@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Core;
+using MSTest.Extensions.Utils;
 
 // ## How it works?
 // 
@@ -36,8 +37,12 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         public override TestResult[] Execute([NotNull] ITestMethod testMethod)
         {
-            var contractTestCases = ContractTest.Method[testMethod.MethodInfo];
-            var result = contractTestCases[_testCaseIndex++].Result;
+            if (_testMethodProxy is null)
+            {
+                _testMethodProxy = new TestMethodProxy(testMethod);
+            }
+
+            var result = _testMethodProxy.Invoke(null);
             return new[] { result };
         }
 
@@ -186,5 +191,12 @@ Two or more test cases have the same contract string which is ""{contract}"".
         /// because they are not in the same instance.
         /// </summary>
         private int _testCaseIndex;
+
+        /// <summary>
+        /// the proxy of ITestMethod(TestMethodInfo in fact)
+        /// overwrite the invoke method
+        /// only one instance in one ContractTestCaseAttribute
+        /// </summary>
+        private ITestMethod _testMethodProxy;
     }
 }
