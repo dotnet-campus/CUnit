@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- This section is prepared for GitVersionTask -->
+    <!-- Use Semantic Version 2.0 -->
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <PackageId>MSTestEnhancer</PackageId>
@@ -13,39 +19,18 @@
     <PackageLicenseUrl>https://github.com/easiwin/MSTestEnhancer/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.4</Version>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
     <PackageReleaseNotes>Supprt passing null into WithArgument method.</PackageReleaseNotes>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
     <OutputPath>..\..\bin\$(Configuration)\</OutputPath>
     <DocumentationFile>..\..\bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
-    <FileVersion>1.3.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Contracts\ContractTest.01.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.02.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.03.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.04.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.05.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.06.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.07.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTest.08.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
-    <Compile Update="Contracts\ContractTestContext.01.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.02.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.03.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.04.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.05.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.06.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.07.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
-    <Compile Update="Contracts\ContractTestContext.08.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
+    <Compile Update="Contracts\ContractTest.*.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
+    <Compile Update="Contracts\ContractTestContext.*.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
   </ItemGroup>
 
   <!--EXTERNAL_PROPERTIES: TargetFramework-->
@@ -54,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
 
