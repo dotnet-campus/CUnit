@@ -15,7 +15,7 @@ If you want to understand how Code works or want to debug an issue, you'll want 
 + [.NET Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 + [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/)
 + [Unit Test](https://msdn.microsoft.com/en-us/library/dd264975.aspx)
-+ [MStest V2](https://github.com/erdao/testfx)
++ [MStest V2](https://github.com/Microsoft/testfx)
 
 Finally, install MSTest V2 packages using Nuget:
     
