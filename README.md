@@ -57,8 +57,12 @@ Then you'll see this kind of test result in testing explorer window:
 // Constructing
 
 ### Contributing Guide
+There are many ways to contribute to MSTestEnhancer
 
-// Constructing
++ [Submit issues](https://github.com/dotnet-campus/MSTestEnhancer/issues) and help verify fixes as they are checked in.
++ Review the [documentation changes](https://github.com/dotnet-campus/MSTestEnhancer/pulls).
++ [How to Contribute]
+
 
 ## License
 
