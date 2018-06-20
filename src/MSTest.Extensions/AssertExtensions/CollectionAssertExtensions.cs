@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSTest.Extensions.AssertExtensions
 {
     /// <summary>
-    /// 一组支持链式语法的CollectionAssert封装
+    /// A set of assertion libraries that support chained syntax
     /// </summary>
     public static class CollectionAssertExtensions
     {
