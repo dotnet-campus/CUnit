@@ -20,7 +20,7 @@
     <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
-    <PackageReleaseNotes>Supprt passing null into WithArgument method.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add some assersion extensions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
