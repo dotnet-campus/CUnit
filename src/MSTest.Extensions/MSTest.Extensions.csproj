@@ -1,15 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <!-- This section is prepared for GitVersionTask -->
-    <!-- Use Semantic Version 2.0 -->
-    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <PackageOutputPath>..\..\bin\</PackageOutputPath>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageId>MSTestEnhancer</PackageId>
+    <Version>1.7</Version>
     <Authors>erdao;walterlv</Authors>
     <RepositoryUrl>https://github.com/easiwin/MSTestEnhancer.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -23,11 +20,6 @@
     <PackageReleaseNotes>Add some assersion extensions.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <OutputPath>..\..\bin\$(Configuration)\</OutputPath>
-    <DocumentationFile>..\..\bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <Compile Update="Contracts\ContractTest.*.cs" AutoGen="True" DependentUpon="ContractTest.cs" />
     <Compile Update="Contracts\ContractTestContext.*.cs" AutoGen="True" DependentUpon="ContractTestContext.cs" />
@@ -39,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
