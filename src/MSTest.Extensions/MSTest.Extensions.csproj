@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dotnetCampus.SourceFusion" Version="0.5.3-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
