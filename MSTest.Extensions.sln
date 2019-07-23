@@ -19,10 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DD067883-4542-400C-A0C0-3BB8CC864F75}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericGenerator", "build\GenericGenerator\GenericGenerator.csproj", "{C3BE2E5C-74B2-48B5-959E-290E5F545701}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +33,6 @@ Global
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3BE2E5C-74B2-48B5-959E-290E5F545701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3BE2E5C-74B2-48B5-959E-290E5F545701}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3BE2E5C-74B2-48B5-959E-290E5F545701}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3BE2E5C-74B2-48B5-959E-290E5F545701}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,7 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{055E6C63-3CC7-427E-B14F-69C85D7E971A} = {1C4D72B5-A7C1-4AAE-A66F-4DDAC5979C28}
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E} = {DA39C42F-B4EA-43F0-AB8C-40987B63F4D6}
-		{C3BE2E5C-74B2-48B5-959E-290E5F545701} = {DD067883-4542-400C-A0C0-3BB8CC864F75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {21BFBA8A-2901-4A78-A722-0DDA95D3773F}
