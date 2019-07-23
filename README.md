@@ -2,9 +2,9 @@
 -|-|-|-
 
 [en]: /README.md
-[jp]: /README.jp.md
-[zh-chs]: /README.zh-chs.md
-[zh-cht]: /README.zh-cht.md
+[jp]: /docs/jp/README.jp.md
+[zh-chs]: /docs/zh-chs/README.zh-chs.md
+[zh-cht]: /docs/zh-cht/README.zh-cht.md
 
 # MSTestEnhancer
 
