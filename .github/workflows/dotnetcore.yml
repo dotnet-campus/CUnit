@@ -1,0 +1,21 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: restore
+      run: dotnet restore
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: msbuild
+      run: msbuild
