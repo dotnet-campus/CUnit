@@ -61,7 +61,7 @@ There are many ways to contribute to MSTestEnhancer
 
 + [Submit issues](https://github.com/dotnet-campus/MSTestEnhancer/issues) and help verify fixes as they are checked in.
 + Review the [documentation changes](https://github.com/dotnet-campus/MSTestEnhancer/pulls).
-+ [How to Contribute](/How to Contribute.md)
++ [How to Contribute](How%20to%20Contribute.md)
 
 
 ## License
