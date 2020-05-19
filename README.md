@@ -6,6 +6,8 @@
 [zh-chs]: /docs/zh-chs/README.zh-chs.md
 [zh-cht]: /docs/zh-cht/README.zh-cht.md
 
+![.NET Build & Test](https://github.com/dotnet-campus/CUnit/workflows/.NET%20Build%20&%20Test/badge.svg) ![NuGet Push](https://github.com/dotnet-campus/CUnit/workflows/NuGet%20Push/badge.svg)
+
 # CUnit
 
 Don't you think that naming is very very hard? Especially naming for unit test method? Read this article for more data of naming: [Don’t go into programming if you don’t have a good thesaurus - ITworld](https://www.itworld.com/article/2833265/cloud-computing/don-t-go-into-programming-if-you-don-t-have-a-good-thesaurus.html).
@@ -33,7 +35,7 @@ public class DemoTest
             // Action
             // Assert
         });
-        
+
         "But when B happened, result B'".Test(() =>
         {
             // Arrange
@@ -48,21 +50,20 @@ Then you'll see this kind of test result in testing explorer window:
 
 ![Unit test result](/docs/images/unit-test-result-of-demo.png)
 
-## How to Engage, Contribute and Provide Feedback
+For more usages, please visit:
 
-// Constructing
-
-### Issue Guide
-
-// Constructing
+- [English](/README.md)
+- [日本語](/docs/jp/README.md)
+- [简体中文](/docs/zh-chs/README.md)
+- [繁體中文](/docs/zh-cht/README.md)
 
 ### Contributing Guide
+
 There are many ways to contribute to MSTestEnhancer
 
-+ [Submit issues](https://github.com/dotnet-campus/MSTestEnhancer/issues) and help verify fixes as they are checked in.
-+ Review the [documentation changes](https://github.com/dotnet-campus/MSTestEnhancer/pulls).
-+ [How to Contribute](How%20to%20Contribute.md)
-
+- [Submit issues](https://github.com/dotnet-campus/MSTestEnhancer/issues) and help verify fixes as they are checked in.
+- Review the [documentation changes](https://github.com/dotnet-campus/MSTestEnhancer/pulls).
+- [How to Contribute](How%20to%20Contribute.md)
 
 ## License
 
