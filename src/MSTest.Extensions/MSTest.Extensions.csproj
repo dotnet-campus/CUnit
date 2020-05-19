@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <PackageOutputPath>..\..\bin\</PackageOutputPath>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageId>MSTestEnhancer</PackageId>
-    <Version>1.7</Version>
-    <Authors>erdao;walterlv</Authors>
-    <RepositoryUrl>https://github.com/easiwin/MSTestEnhancer.git</RepositoryUrl>
+    <Version>2.0</Version>
+    <Authors>dotnet-campus</Authors>
+    <RepositoryUrl>https://github.com/dotnet-campus/CUnit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://easiwin.github.io/mstest-enhancer</PackageProjectUrl>
-    <PackageIconUrl>https://easiwin.github.io/mstest-enhancer/icon.png</PackageIconUrl>
-    <PackageLicenseUrl>https://github.com/easiwin/MSTestEnhancer/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright (c) 2018 dotnet职业技术学院</Copyright>
+    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
+    <PackageIconUrl>https://dotnet-campus.github.io/mstest-enhancer/icon.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/dotnet-campus/CUnit/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2018-2020 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
     <PackageReleaseNotes>Add some assersion extensions.</PackageReleaseNotes>
@@ -26,13 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="dotnetCampus.SourceFusion" Version="0.5.3-alpha">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="dotnetCampus.GenericGenerator" Version="0.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
