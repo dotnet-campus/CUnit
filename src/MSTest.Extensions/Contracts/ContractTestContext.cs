@@ -3,6 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using MSTest.Extensions.Core;
+using dotnetCampus.Runtime.CompilerServices;
 #if GENERATED_CODE
 using CanBeNullWhenTIsSingle = MSTest.Extensions.NotNullAttribute;
 #else
@@ -14,6 +15,7 @@ namespace MSTest.Extensions.Contracts
     /// <summary>
     /// Provides builder for a particular contracted test case.
     /// </summary>
+    [GenerateGenericFromThis(From = 2, To = 4)]
     public class ContractTestContext<T>
     {
         /// <summary>

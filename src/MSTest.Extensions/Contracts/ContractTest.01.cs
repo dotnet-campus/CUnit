@@ -1,9 +1,11 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
+using dotnetCampus.Runtime.CompilerServices;
 
 namespace MSTest.Extensions.Contracts
 {
+    [GenerateGenericFromThis(From = 2, To = 4)]
     public static partial class ContractTest
     {
         /// <summary>
