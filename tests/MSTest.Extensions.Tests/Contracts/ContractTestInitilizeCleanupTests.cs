@@ -10,7 +10,6 @@ namespace MSTest.Extensions.Tests.Contracts
         [ContractTestCase]
         public void TestInitializeAttribute()
         {
-
             "the 1st time TestInitialize run 1 time,_staticField==1".Test(() =>
             {
                 Assert.AreEqual(_staticField, 1);
@@ -40,7 +39,6 @@ namespace MSTest.Extensions.Tests.Contracts
         [ContractTestCase]
         public void TheMethodNameYouWantToTest()
         {
-
             "the 1st time TestCleanup not run,_staticField==1".Test(() =>
             {
                 Assert.AreEqual(_staticField, 0);
@@ -71,7 +69,6 @@ namespace MSTest.Extensions.Tests.Contracts
         [ContractTestCase]
         public void TestInitializeAttribute()
         {
-
             "the 1st time TestInitialize run 1 time,TestCleanup not run,_staticField==1".Test(() =>
             {
                 Assert.AreEqual(_staticField, 1);
