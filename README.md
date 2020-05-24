@@ -6,7 +6,7 @@
 [zh-chs]: /docs/zh-chs/README.zh-chs.md
 [zh-cht]: /docs/zh-cht/README.zh-cht.md
 
-![.NET Build & Test](https://github.com/dotnet-campus/CUnit/workflows/.NET%20Build%20&%20Test/badge.svg) ![NuGet Push](https://github.com/dotnet-campus/CUnit/workflows/NuGet%20Push/badge.svg)
+![.NET Build & Test](https://github.com/dotnet-campus/CUnit/workflows/.NET%20Build%20&%20Test/badge.svg) ![NuGet Push](https://github.com/dotnet-campus/CUnit/workflows/NuGet%20Push/badge.svg) [![](https://img.shields.io/nuget/v/MSTestEnhancer.svg)](https://www.nuget.org/packages/MSTestEnhancer)
 
 # CUnit
 
