@@ -10,7 +10,6 @@
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
-    <PackageIconUrl>https://dotnet-campus.github.io/mstest-enhancer/icon.png</PackageIconUrl>
     <Copyright>Copyright (c) 2018-2020 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
