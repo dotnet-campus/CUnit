@@ -31,7 +31,7 @@ namespace MSTest.Extensions.AssertExtensions
         /// </exception>
         public static CollectionAssert ContainsT(this CollectionAssert collectionAssert, ICollection collection, object element, string message = "")
         {
-            CollectionAssert.Contains(collection, element, string.Empty, null);
+            CollectionAssert.Contains(collection, element, message, null);
             return collectionAssert;
         }
 
