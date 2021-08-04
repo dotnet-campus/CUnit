@@ -13,6 +13,86 @@ namespace MSTest.Extensions.CustomTestManagers
     public class CustomTestManager
     {
         /// <summary>
+        /// Create the custom test manager
+        /// </summary>
+        public CustomTestManager()
+        {
+            Context = new CustomTestManagerRunContext();
+        }
+
+        /// <summary>
+        /// Create the custom test manager
+        /// </summary>
+        /// <param name="context"></param>
+        public CustomTestManager(CustomTestManagerRunContext context)
+        {
+            Context = context;
+        }
+
+        /// <summary>
+        /// Run all the test from MethodInfo
+        /// </summary>
+        /// <param name="methodInfo"></param>
+        /// <returns></returns>
+        [NotNull]
+        public TestManagerRunResult Run([NotNull] MethodInfo methodInfo)
+        {
+            var exceptionList = new List<TestExceptionResult>();
+            int count = 0;
+            TimeSpan duration = TimeSpan.Zero;
+
+            var contractTestCaseAttribute = methodInfo.GetCustomAttribute<ContractTestCaseAttribute>();
+            if (contractTestCaseAttribute != null)
+            {
+                // 获取执行次数
+                foreach (var data in contractTestCaseAttribute.GetData(methodInfo))
+                {
+                    count++;
+                    var displayName = contractTestCaseAttribute.GetDisplayName(methodInfo, data);
+
+                    try
+                    {
+                        var resultList = contractTestCaseAttribute.Execute(new FakeTestMethod(methodInfo));
+                        var result = resultList[0];
+                        duration += result.Duration;
+                    }
+#pragma warning disable CA1031 // 不捕获常规异常类型
+                    catch (Exception e)
+#pragma warning restore CA1031 // 不捕获常规异常类型
+                    {
+                        exceptionList.Add(new TestExceptionResult(displayName, e));
+                    }
+                }
+            }
+
+            return new TestManagerRunResult(count, duration, exceptionList);
+        }
+
+        /// <summary>
+        /// Run all the test from TestClass
+        /// </summary>
+        /// <returns></returns>
+        [NotNull]
+        public TestManagerRunResult Run([NotNull] Type testClass)
+        {
+            var exceptionList = new List<TestExceptionResult>();
+            int count = 0;
+
+            TimeSpan duration = TimeSpan.Zero;
+
+            foreach (var methodInfo in testClass.GetMethods())
+            {
+                var testManagerRunResult = Run(methodInfo);
+
+                count += testManagerRunResult.AllTestCount;
+                duration += testManagerRunResult.Duration;
+                exceptionList.AddRange(testManagerRunResult.TestExceptionResultList);
+            }
+
+            return new TestManagerRunResult(count, duration, exceptionList);
+        }
+
+        /// <summary>
         /// Run all the test in assembly
         /// </summary>
         /// <param name="assembly"></param>
@@ -30,36 +110,18 @@ namespace MSTest.Extensions.CustomTestManagers
             {
                 if (type.GetCustomAttribute<TestClassAttribute>() != null)
                 {
-                    foreach (var methodInfo in type.GetMethods())
-                    {
-                        var contractTestCaseAttribute = methodInfo.GetCustomAttribute<ContractTestCaseAttribute>();
-                        if (contractTestCaseAttribute != null)
-                        {
-                            // 获取执行次数
-                            foreach (var data in contractTestCaseAttribute.GetData(methodInfo))
-                            {
-                                count++;
-                                var displayName = contractTestCaseAttribute.GetDisplayName(methodInfo, data);
+                    var testManagerRunResult = Run(type);
 
-                                try
-                                {
-                                    var resultList = contractTestCaseAttribute.Execute(new FakeTestMethod(methodInfo));
-                                    var result = resultList[0];
-                                    duration += result.Duration;
-                                }
-#pragma warning disable CA1031 // 不捕获常规异常类型
-                                catch (Exception e)
-#pragma warning restore CA1031 // 不捕获常规异常类型
-                                {
-                                    exceptionList.Add(new TestExceptionResult(displayName, e));
-                                }
-                            }
-                        }
-                    }
+                    count += testManagerRunResult.AllTestCount;
+                    duration += testManagerRunResult.Duration;
+                    exceptionList.AddRange(testManagerRunResult.TestExceptionResultList);
                 }
             }
+
             return new TestManagerRunResult(count, duration, exceptionList);
         }
+
+        private CustomTestManagerRunContext Context { get; }
 
         class FakeTestMethod : ITestMethod
         {
