@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 using MSTest.Extensions.Utils;
@@ -8,7 +9,7 @@ using MSTest.Extensions.Utils;
 namespace MSTest.Extensions.Core
 {
     /// <summary>
-    /// the testmethod proxy, replace the implement of ItestMethod invoke
+    /// the TestMethod proxy, replace the implement of ITestMethod invoke
     /// </summary>
     public class TestMethodProxy : ITestMethod
     {
@@ -44,6 +45,26 @@ namespace MSTest.Extensions.Core
             return result;
         }
 
+        [NotNull]
+        [ItemNotNull]
+        internal async Task<TestResult> InvokerAsync()
+        {
+            TestMethodInitialize();
+            var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            var testCase = testCases[_testCaseIndex++];
+            TestResult result;
+            if (testCase is ContractTestCase contractTestCase)
+            {
+                result = await contractTestCase.ExecuteAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                result = testCases[_testCaseIndex++].Result;
+            }
+            TestMethodCleanup();
+            return result;
+        }
+
         /// <summary>
         /// return real instance implement of GetAllAttributes
         /// </summary>
@@ -57,12 +78,12 @@ namespace MSTest.Extensions.Core
         /// <summary>
         /// return real instance implement of GetAttributes
         /// </summary>
-        /// <typeparam name="AttributeType"></typeparam>
+        /// <typeparam name="TAttributeType"></typeparam>
         /// <param name="inherit"></param>
         /// <returns></returns>
-        public AttributeType[] GetAttributes<AttributeType>(bool inherit) where AttributeType : Attribute
+        public TAttributeType[] GetAttributes<TAttributeType>(bool inherit) where TAttributeType : Attribute
         {
-            return _realSubject.GetAttributes<AttributeType>(inherit);
+            return _realSubject.GetAttributes<TAttributeType>(inherit);
         }
 
         /// <summary>

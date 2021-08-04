@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
@@ -35,8 +37,10 @@ namespace MSTest.Extensions.CustomTestManagers
         /// <param name="methodInfo"></param>
         /// <returns></returns>
         [NotNull]
-        public TestManagerRunResult Run([NotNull] MethodInfo methodInfo)
+        [ItemNotNull]
+        public async Task<TestManagerRunResult> RunAsync([NotNull] MethodInfo methodInfo)
         {
+            if (methodInfo == null) throw new ArgumentNullException(nameof(methodInfo));
             var exceptionList = new List<TestExceptionResult>();
             int count = 0;
             TimeSpan duration = TimeSpan.Zero;
@@ -52,8 +56,9 @@ namespace MSTest.Extensions.CustomTestManagers
 
                     try
                     {
-                        var resultList = contractTestCaseAttribute.Execute(new FakeTestMethod(methodInfo));
-                        var result = resultList[0];
+                        var result = await contractTestCaseAttribute.ExecuteAsync(new FakeTestMethod(methodInfo))
+                            // 在 UI 中进行测试，期望每次都是返回到相同的线程
+                            .ConfigureAwait(true);
                         duration += result.Duration;
                     }
 #pragma warning disable CA1031 // 不捕获常规异常类型
@@ -73,8 +78,10 @@ namespace MSTest.Extensions.CustomTestManagers
         /// </summary>
         /// <returns></returns>
         [NotNull]
-        public TestManagerRunResult Run([NotNull] Type testClass)
+        [ItemNotNull]
+        public async Task<TestManagerRunResult> RunAsync([NotNull] Type testClass)
         {
+            if (testClass == null) throw new ArgumentNullException(nameof(testClass));
             var exceptionList = new List<TestExceptionResult>();
             int count = 0;
 
@@ -82,7 +89,9 @@ namespace MSTest.Extensions.CustomTestManagers
 
             foreach (var methodInfo in testClass.GetMethods())
             {
-                var testManagerRunResult = Run(methodInfo);
+                var testManagerRunResult = await RunAsync(methodInfo)
+                    // 在 UI 中进行测试，期望每次都是返回到相同的线程
+                    .ConfigureAwait(true);
 
                 count += testManagerRunResult.AllTestCount;
                 duration += testManagerRunResult.Duration;
@@ -98,7 +107,8 @@ namespace MSTest.Extensions.CustomTestManagers
         /// <param name="assembly"></param>
         /// <returns></returns>
         [NotNull]
-        public TestManagerRunResult Run(Assembly assembly = null)
+        [ItemNotNull]
+        public async Task<TestManagerRunResult> RunAsync(Assembly assembly = null)
         {
             assembly ??= Assembly.GetCallingAssembly();
             var exceptionList = new List<TestExceptionResult>();
@@ -110,7 +120,9 @@ namespace MSTest.Extensions.CustomTestManagers
             {
                 if (type.GetCustomAttribute<TestClassAttribute>() != null)
                 {
-                    var testManagerRunResult = Run(type);
+                    var testManagerRunResult = await RunAsync(type)
+                        // 在 UI 中进行测试，期望每次都是返回到相同的线程
+                        .ConfigureAwait(true); 
 
                     count += testManagerRunResult.AllTestCount;
                     duration += testManagerRunResult.Duration;
@@ -125,7 +137,7 @@ namespace MSTest.Extensions.CustomTestManagers
 
         class FakeTestMethod : ITestMethod
         {
-            public FakeTestMethod(MethodInfo methodInfo, [CanBeNull] object obj = null)
+            public FakeTestMethod([NotNull] MethodInfo methodInfo, [CanBeNull] object obj = null)
             {
                 MethodInfo = methodInfo;
                 Obj = obj ?? Activator.CreateInstance(methodInfo.DeclaringType!);
