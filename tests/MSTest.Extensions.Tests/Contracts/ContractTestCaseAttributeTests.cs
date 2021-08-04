@@ -15,6 +15,8 @@ namespace MSTest.Extensions.Tests.Contracts
         public void RunAPassedTestCase()
         {
             "".Test(() => { });
+            "123".Test(() => { });
+            "121233".Test(() => { });
         }
 
         [ContractTestCase]
