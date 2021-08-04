@@ -108,9 +108,13 @@ namespace MSTest.Extensions.CustomTestManagers
         /// <returns></returns>
         [NotNull]
         [ItemNotNull]
-        public async Task<TestManagerRunResult> RunAsync(Assembly assembly = null)
+        public async Task<TestManagerRunResult> RunAsync([NotNull]Assembly assembly)
         {
-            assembly ??= Assembly.GetCallingAssembly();
+            if (assembly is null)
+            {
+                throw new ArgumentNullException(nameof(assembly));
+            }
+
             var exceptionList = new List<TestExceptionResult>();
             int count = 0;
 
