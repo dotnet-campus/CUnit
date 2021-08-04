@@ -115,5 +115,4 @@ namespace MSTest.Extensions.CustomTestManagers
             public Queue<MethodInfo> BaseTestCleanupMethodsQueue { set; get; }
         }
     }
-
 }
