@@ -59,20 +59,20 @@ namespace MSTest.Extensions.CustomTestManagers
             if (Success)
             {
                 return
-                    $"已通过! - 失败:{FailTestCount,8}，通过:{SuccessTestCount,8}，已跳过:     0，总计:{AllTestCount,8}，持续时间: {Duration.TotalSeconds:0.00} s";
+                    $"Passed! - Failed:{FailTestCount,8}，Passed:{SuccessTestCount,8}，Skipped:     0，Total:{AllTestCount,8}，Duration: {Duration.TotalSeconds:0.00} s";
             }
             else
             {
                 var stringBuilder = new StringBuilder();
                 foreach (var exception in TestExceptionResultList)
                 {
-                    stringBuilder.AppendLine($"失败 {exception.DisplayName}");
-                    stringBuilder.AppendLine($"错误信息：");
+                    stringBuilder.AppendLine($"Failed {exception.DisplayName}");
+                    stringBuilder.AppendLine($"Message:");
                     stringBuilder.AppendLine(exception.Exception.ToString());
                     stringBuilder.AppendLine();
                 }
 
-                stringBuilder.AppendLine($"失败! - 失败:{FailTestCount,8}，通过:{SuccessTestCount,8}，已跳过:     0，总计:{AllTestCount,8}，持续时间: {Duration.TotalSeconds:0.00} s");
+                stringBuilder.AppendLine($"Failed! - Failed:{FailTestCount,8}，Passed:{SuccessTestCount,8}，Skipped:     0，Total:{AllTestCount,8}，Duration: {Duration.TotalSeconds:0.00} s");
                 return stringBuilder.ToString();
             }
         }
