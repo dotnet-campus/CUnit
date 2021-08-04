@@ -50,7 +50,7 @@ namespace MSTest.Extensions.Core
         public string DisplayName => _contract;
 
         /// <inheritdoc />
-        public TestResult Result => _result ?? (_result = Execute());
+        public TestResult Result => _result ??= Execute();
 
         /// <summary>
         /// Invoke the test case action to get the test result.
@@ -59,8 +59,17 @@ namespace MSTest.Extensions.Core
         [NotNull]
         private TestResult Execute()
         {
+            return ExecuteAsync().Result;
+        }
+
+        /// <summary>
+        /// Invoke the test case action to get the test result.
+        /// </summary>
+        [ItemNotNull]
+        internal async Task<TestResult> ExecuteAsync()
+        {
             // Execute the unit test.
-            var (duration, output, error, exception) = ExecuteCore();
+            var (duration, output, error, exception) = await ExecuteCoreAsync().ConfigureAwait(false);
 
             // Return the test result.
             var result = new TestResult
@@ -87,12 +96,12 @@ namespace MSTest.Extensions.Core
         /// Execute the unit test and get the execution result.
         /// </summary>
         /// <returns>
-        /// duration: The ellapsed time of executing this test case.
+        /// duration: The elapsed time of executing this test case.
         /// output: When `Console.Write` is called, the output will be collected into this property.
         /// output: When `Console.Write` is called, it will be collected into this property.
         /// exception: If any exception occurred, it will be collected into this property; otherwise, it will be null.
         /// </returns>
-        private (TimeSpan duration, string output, string error, Exception exception) ExecuteCore()
+        private async Task<(TimeSpan duration, string output, string error, Exception exception)> ExecuteCoreAsync()
         {
             TimeSpan duration;
             string output;
@@ -115,7 +124,7 @@ namespace MSTest.Extensions.Core
                     // Execute the test case.
                     try
                     {
-                        _testCase().Wait();
+                        await _testCase().ConfigureAwait(false);
                         exception = null;
                     }
                     catch (AggregateException ex)

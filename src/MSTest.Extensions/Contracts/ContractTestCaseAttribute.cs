@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Core;
 using MSTest.Extensions.Utils;
@@ -44,6 +45,14 @@ namespace MSTest.Extensions.Contracts
 
             var result = _testMethodProxy.Invoke(null);
             return new[] { result };
+        }
+
+        [NotNull]
+        internal Task<TestResult> ExecuteAsync([NotNull] ITestMethod testMethod)
+        {
+            _testMethodProxy ??= new TestMethodProxy(testMethod);
+
+            return _testMethodProxy.InvokerAsync();
         }
 
         #endregion
@@ -197,6 +206,6 @@ Two or more test cases have the same contract string which is ""{contract}"".
         /// overwrite the invoke method
         /// only one instance in one ContractTestCaseAttribute
         /// </summary>
-        private ITestMethod _testMethodProxy;
+        private TestMethodProxy _testMethodProxy;
     }
 }
