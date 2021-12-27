@@ -13,9 +13,5 @@ namespace dotnetCampus.UITest.WPF.Demo
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            InitializeComponent();
-        }
     }
 }

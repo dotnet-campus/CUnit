@@ -11,9 +11,14 @@ namespace dotnetCampus.UITest.WPF.Demo
     public class FooTest
     {
         [AssemblyInitialize]
-        public void InitializeApplication()
+        public static void InitializeApplication(TestContext testContext)
         {
-            UITestManager.InitializeApplication(new App());
+            UITestManager.InitializeApplication(() =>
+            {
+                var app = new App();
+                app.InitializeComponent();
+                app.Run();
+            });
         }
 
         [UIContractTestCase]
