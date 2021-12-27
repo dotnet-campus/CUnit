@@ -40,7 +40,7 @@ namespace MSTest.Extensions.Contracts
         {
             if (_testMethodProxy is null)
             {
-                _testMethodProxy = new TestMethodProxy(testMethod);
+                _testMethodProxy = CreateTestMethodProxy(testMethod);
             }
 
             var result = _testMethodProxy.Invoke(null);
@@ -50,9 +50,15 @@ namespace MSTest.Extensions.Contracts
         [NotNull]
         internal Task<TestResult> ExecuteAsync([NotNull] ITestMethod testMethod)
         {
-            _testMethodProxy ??= new TestMethodProxy(testMethod);
+            _testMethodProxy ??= CreateTestMethodProxy(testMethod);
 
             return _testMethodProxy.InvokeAsync();
+        }
+
+        [NotNull]
+        private protected virtual TestMethodProxy CreateTestMethodProxy([NotNull] ITestMethod testMethod)
+        {
+            return new TestMethodProxy(testMethod);
         }
 
         #endregion
