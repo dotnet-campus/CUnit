@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using MSTest.Extensions.Contracts;
+using MSTest.Extensions.Utils;
 
 namespace dotnetCampus.UITest.WPF.Demo
 {
@@ -16,7 +17,10 @@ namespace dotnetCampus.UITest.WPF.Demo
         {
             UITestManager.InitializeApplication(() =>
             {
-                Application.ResourceAssembly = typeof(App).Assembly;
+                //Application.ResourceAssembly = typeof(App).Assembly;
+                var resourceAssembly = typeof(App).Assembly;
+                typeof(Application).GetField("_resourceAssembly", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)!.SetValue(null, resourceAssembly);
+
                 var app = new App();
                 app.InitializeComponent();
                 app.Run();
