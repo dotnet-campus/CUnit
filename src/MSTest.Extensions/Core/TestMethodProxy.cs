@@ -59,7 +59,7 @@ namespace MSTest.Extensions.Core
             }
             else
             {
-                result = testCases[_testCaseIndex++].Result;
+                result = testCase.Result;
             }
             TestMethodCleanup();
             return result;
