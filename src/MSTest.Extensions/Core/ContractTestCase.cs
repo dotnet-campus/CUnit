@@ -92,12 +92,6 @@ namespace MSTest.Extensions.Core
             return result;
         }
 
-        [CanBeNull] 
-        public static event EventHandler<ContractTestCase> RunningTestCase;
-
-        [CanBeNull]
-        public static event EventHandler<ContractTestCase> RanTestCase;
-
         /// <summary>
         /// Execute the unit test and get the execution result.
         /// </summary>
@@ -130,15 +124,12 @@ namespace MSTest.Extensions.Core
                     // Execute the test case.
                     try
                     {
-                        RunningTestCase?.Invoke(this, this);
                         await _testCase().ConfigureAwait(false);
-                        RanTestCase?.Invoke(this, this);
-
                         exception = null;
                     }
                     catch (AggregateException ex)
                     {
-                        // If this test case is an async method, extract the inner exception.
+                        // If this test case is an async method, extract the inner excetion.
                         exception = ex.InnerExceptions.Count == 1 ? ex.InnerException : ex;
                     }
                     catch (Exception ex)
