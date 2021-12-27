@@ -65,6 +65,16 @@ namespace MSTest.Extensions.Core
             return result;
         }
 
+        private protected virtual void OnRunning(ITestCase testCase)
+        {
+
+        }
+
+        private protected virtual void OnRan(ITestCase testCase)
+        {
+
+        }
+
         /// <summary>
         /// return real instance implement of GetAllAttributes
         /// </summary>
