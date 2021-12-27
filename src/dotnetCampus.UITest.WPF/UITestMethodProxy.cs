@@ -18,7 +18,17 @@ namespace dotnetCampus.UITest.WPF
 
         private protected override TestResult InvokeCore(ITestCase testCase)
         {
-            return Application.Current.Dispatcher.Invoke(() => base.InvokeCore(testCase));
+            if (testCase is ContractTestCase contractTestCase)
+            {
+                var task = Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    return await contractTestCase.ExecuteAsync();
+                });
+
+                return task.Result;
+            }
+
+            return base.InvokeCore(testCase);
         }
 
         private protected override async Task<TestResult> InvokeCoreAsync(ITestCase testCase)

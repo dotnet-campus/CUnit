@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -16,6 +17,19 @@ namespace dotnetCampus.UITest.WPF.Demo
         public static void InitializeApplication(TestContext testContext)
         {
             UITestManager.InitializeApplication(() => new App());
+        }
+
+        [UIContractTestCase]
+        public void TestAsyncLoad()
+        {
+            "Waiting with async Loaded, then it do not lock UI Thread.".Test(async () =>
+            {
+                var mainWindow = new MainWindow();
+                var taskCompletionSource = new TaskCompletionSource();
+                mainWindow.Loaded += (sender, args) => taskCompletionSource.SetResult();
+                await mainWindow.Dispatcher.InvokeAsync(mainWindow.Show);
+                await taskCompletionSource.Task;
+            });
         }
 
         [UIContractTestCase]
