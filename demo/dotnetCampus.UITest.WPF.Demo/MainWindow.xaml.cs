@@ -25,9 +25,4 @@ namespace dotnetCampus.UITest.WPF.Demo
             InitializeComponent();
         }
     }
-
-    public class FooTest
-    {
-
-    }
 }
