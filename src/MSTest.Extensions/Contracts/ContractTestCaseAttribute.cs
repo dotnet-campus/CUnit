@@ -30,7 +30,7 @@ namespace MSTest.Extensions.Contracts
     /// Enable the unit test writing style of `"contract string".Test(TestCaseAction)`.
     /// </summary>
     [PublicAPI]
-    public sealed class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
+    public class ContractTestCaseAttribute : TestMethodAttribute, ITestDataSource
     {
         #region Instance derived from TestMethodAttribute
 
@@ -52,7 +52,7 @@ namespace MSTest.Extensions.Contracts
         {
             _testMethodProxy ??= new TestMethodProxy(testMethod);
 
-            return _testMethodProxy.InvokerAsync();
+            return _testMethodProxy.InvokeAsync();
         }
 
         #endregion

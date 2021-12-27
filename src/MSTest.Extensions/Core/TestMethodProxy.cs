@@ -47,7 +47,7 @@ namespace MSTest.Extensions.Core
 
         [NotNull]
         [ItemNotNull]
-        internal async Task<TestResult> InvokerAsync()
+        internal async Task<TestResult> InvokeAsync()
         {
             TestMethodInitialize();
             var testCases = ContractTest.Method[_realSubject.MethodInfo];
