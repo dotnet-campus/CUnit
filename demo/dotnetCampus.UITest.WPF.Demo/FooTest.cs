@@ -15,16 +15,7 @@ namespace dotnetCampus.UITest.WPF.Demo
         [AssemblyInitialize]
         public static void InitializeApplication(TestContext testContext)
         {
-            UITestManager.InitializeApplication(() =>
-            {
-                //Application.ResourceAssembly = typeof(App).Assembly;
-                var resourceAssembly = typeof(App).Assembly;
-                typeof(Application).GetField("_resourceAssembly", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)!.SetValue(null, resourceAssembly);
-
-                var app = new App();
-                app.InitializeComponent();
-                app.Run();
-            });
+            UITestManager.InitializeApplication(() => new App());
         }
 
         [UIContractTestCase]
