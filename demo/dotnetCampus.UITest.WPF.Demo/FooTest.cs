@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
 using System.Windows.Threading;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,6 +16,7 @@ namespace dotnetCampus.UITest.WPF.Demo
         {
             UITestManager.InitializeApplication(() =>
             {
+                Application.ResourceAssembly = typeof(App).Assembly;
                 var app = new App();
                 app.InitializeComponent();
                 app.Run();
