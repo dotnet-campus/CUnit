@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>The UITest framework for WPF</Description>
+    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
+    <Copyright>Copyright (c) 2021 dotnet职业技术学院</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/dotnet-campus/CUnit</RepositoryUrl>
+    <PackageTags>dotnet;nuget;msbuild;UITest;WPF;MSTest;TestFramework</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSTest.Extensions\MSTest.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>

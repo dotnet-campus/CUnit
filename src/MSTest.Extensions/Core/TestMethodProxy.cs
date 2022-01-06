@@ -40,18 +40,35 @@ namespace MSTest.Extensions.Core
         {
             TestMethodInitialize();
             var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            var result = testCases[_testCaseIndex++].Result;
+            var testCase = testCases[_testCaseIndex++];
+            var result = InvokeCore(testCase);
             TestMethodCleanup();
             return result;
         }
 
         [NotNull]
         [ItemNotNull]
-        internal async Task<TestResult> InvokerAsync()
+        internal async Task<TestResult> InvokeAsync()
         {
             TestMethodInitialize();
             var testCases = ContractTest.Method[_realSubject.MethodInfo];
             var testCase = testCases[_testCaseIndex++];
+            var result = await InvokeCoreAsync(testCase).ConfigureAwait(false);
+            TestMethodCleanup();
+            return result;
+        }
+
+        [NotNull]
+        private protected virtual TestResult InvokeCore([NotNull] ITestCase testCase)
+        {
+            var result = testCase.Result;
+            return result;
+        }
+
+        [NotNull]
+        [ItemNotNull]
+        private protected virtual async Task<TestResult> InvokeCoreAsync([NotNull] ITestCase testCase)
+        {
             TestResult result;
             if (testCase is ContractTestCase contractTestCase)
             {
@@ -59,9 +76,9 @@ namespace MSTest.Extensions.Core
             }
             else
             {
-                result = testCases[_testCaseIndex++].Result;
+                result = testCase.Result;
             }
-            TestMethodCleanup();
+
             return result;
         }
 
@@ -153,14 +170,14 @@ namespace MSTest.Extensions.Core
         private void ReflectionMemberInit()
         {
             ClassInfo = _realSubject.GetProperty(MSTestMemberName.TestMethodInfoPropertyParent);
-            TestCleanupMethod = (MethodInfo) ClassInfo
-               .GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
-            TestInitializeMethod = (MethodInfo) ClassInfo
-               .GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
-            BaseTestInitializeMethodsQueue = (Queue<MethodInfo>) ClassInfo
-               .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
-            BaseTestCleanupMethodsQueue = (Queue<MethodInfo>) ClassInfo
-               .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
+            TestCleanupMethod = (MethodInfo)ClassInfo
+                .GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
+            TestInitializeMethod = (MethodInfo)ClassInfo
+                .GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
+            BaseTestInitializeMethodsQueue = (Queue<MethodInfo>)ClassInfo
+                .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
+            BaseTestCleanupMethodsQueue = (Queue<MethodInfo>)ClassInfo
+                .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
         }
 
         private object ClassInfo { get; set; }

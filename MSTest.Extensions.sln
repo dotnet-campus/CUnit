@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSTest.Extensions", "src\MSTest.Extensions\MSTest.Extensions.csproj", "{055E6C63-3CC7-427E-B14F-69C85D7E971A}"
 EndProject
@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.UITest.WPF", "src\dotnetCampus.UITest.WPF\dotnetCampus.UITest.WPF.csproj", "{E62C4947-CD69-411D-8749-78C8B2C25ACE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.UITest.WPF.Demo", "demo\dotnetCampus.UITest.WPF.Demo\dotnetCampus.UITest.WPF.Demo.csproj", "{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62C4947-CD69-411D-8749-78C8B2C25ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62C4947-CD69-411D-8749-78C8B2C25ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62C4947-CD69-411D-8749-78C8B2C25ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62C4947-CD69-411D-8749-78C8B2C25ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{055E6C63-3CC7-427E-B14F-69C85D7E971A} = {1C4D72B5-A7C1-4AAE-A66F-4DDAC5979C28}
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E} = {DA39C42F-B4EA-43F0-AB8C-40987B63F4D6}
+		{E62C4947-CD69-411D-8749-78C8B2C25ACE} = {1C4D72B5-A7C1-4AAE-A66F-4DDAC5979C28}
+		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF} = {DA39C42F-B4EA-43F0-AB8C-40987B63F4D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {21BFBA8A-2901-4A78-A722-0DDA95D3773F}
