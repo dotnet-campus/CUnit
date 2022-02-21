@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     internal static class BuiltInTypeHelper
     {

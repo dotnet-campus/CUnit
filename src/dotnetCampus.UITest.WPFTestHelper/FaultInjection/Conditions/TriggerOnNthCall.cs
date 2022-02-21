@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.FaultInjection.Conditions
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Conditions
 {
     [Serializable()]
     internal sealed class TriggerOnNthCall : ICondition

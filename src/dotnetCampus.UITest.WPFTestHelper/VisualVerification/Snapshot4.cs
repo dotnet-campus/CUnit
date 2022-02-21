@@ -11,7 +11,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// Represents image pixels in a two-dimensional array for use in visual verification.

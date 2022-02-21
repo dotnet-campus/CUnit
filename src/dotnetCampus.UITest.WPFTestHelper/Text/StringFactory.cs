@@ -5,11 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Text;
 
-
-namespace Microsoft.Test.Text
+namespace dotnetCampus.UITest.WPFTestHelper.Text
 {
     /// <summary>
     /// Provides factory methods for generation of text, interesting from the testing point of view.

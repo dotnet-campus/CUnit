@@ -11,7 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Microsoft.Test.CommandLineParsing
+namespace dotnetCampus.UITest.WPFTestHelper.CommandLineParsing
 {
     /// <summary>
     /// Provides utilities for parsing command-line values.

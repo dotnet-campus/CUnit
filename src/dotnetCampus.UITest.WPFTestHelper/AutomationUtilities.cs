@@ -3,12 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Automation;
 
-namespace Microsoft.Test
+namespace dotnetCampus.UITest.WPFTestHelper
 {
     /// <summary>
     /// The AutomationUtilities class provides a simple interface to common 

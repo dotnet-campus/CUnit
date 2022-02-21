@@ -2,14 +2,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Text;
 
-
-namespace Microsoft.Test.Text
+namespace dotnetCampus.UITest.WPFTestHelper.Text
 {
     /// <summary>
     /// PropertyFactory class stores string property objects

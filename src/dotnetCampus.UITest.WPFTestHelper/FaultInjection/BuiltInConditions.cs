@@ -3,11 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 
-using System;
-using Microsoft.Test.FaultInjection.Conditions;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Conditions;
 
-
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Contains all built-in fault injection conditions.

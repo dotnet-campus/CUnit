@@ -5,10 +5,10 @@
 
 using System;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Interop;
+using System.Windows.Media;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// WPF type centric helper, on top of the general purpose Snapshot.

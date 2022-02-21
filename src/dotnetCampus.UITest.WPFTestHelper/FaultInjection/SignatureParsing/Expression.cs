@@ -5,19 +5,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
 #if TESTBUILD_CLR20
 // These includes are for the different Assembly.LoadFrom() overload used to make CLR 2.0 CAS policy work
 using System.Security;
 using System.Security.Policy;
 #endif
-using Microsoft.Test.FaultInjection.Constants;
 
-namespace Microsoft.Test.FaultInjection.SignatureParsing
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing
 {
     /// <summary>
     /// Parse string expression into value

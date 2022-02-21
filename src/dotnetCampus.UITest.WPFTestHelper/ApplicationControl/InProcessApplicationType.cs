@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Test.ApplicationControl
+namespace dotnetCampus.UITest.WPFTestHelper.ApplicationControl
 {
     /// <summary>
     /// Defines the Thread and AppDomain properties of an InProcessApplication.

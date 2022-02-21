@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-
-namespace Microsoft.Test.Text
+namespace dotnetCampus.UITest.WPFTestHelper.Text
 {
     /// <summary>
     /// UnicodeRangeProperty class to store data for a property

@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Test.LeakDetection
+namespace dotnetCampus.UITest.WPFTestHelper.LeakDetection
 {   
     internal static class MemoryInterop
     {

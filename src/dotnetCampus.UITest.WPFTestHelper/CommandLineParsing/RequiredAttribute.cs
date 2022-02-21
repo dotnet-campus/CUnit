@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.CommandLineParsing
+namespace dotnetCampus.UITest.WPFTestHelper.CommandLineParsing
 {
     /// <summary>
     /// Defines whether a property value is required to be specified.

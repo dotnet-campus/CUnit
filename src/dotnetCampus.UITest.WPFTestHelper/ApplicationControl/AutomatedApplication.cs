@@ -2,11 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-﻿using System;
-using System.Threading;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
-namespace Microsoft.Test.ApplicationControl
+namespace dotnetCampus.UITest.WPFTestHelper.ApplicationControl
 {
     /// <summary>
     /// Loads and starts a test application either in the current process or in a new, 

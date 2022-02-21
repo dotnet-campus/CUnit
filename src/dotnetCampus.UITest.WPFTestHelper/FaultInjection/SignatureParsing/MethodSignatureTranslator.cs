@@ -4,10 +4,10 @@
 
 
 using System;
-using System.Globalization;
 using System.Collections.Generic;
+using System.Globalization;
 
-namespace Microsoft.Test.FaultInjection.SignatureParsing
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing
 {
     internal static class MethodSignatureTranslator
     {

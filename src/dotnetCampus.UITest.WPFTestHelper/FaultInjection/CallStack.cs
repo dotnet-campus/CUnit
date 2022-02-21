@@ -6,9 +6,9 @@
 using System;
 using System.Diagnostics;
 using System.Reflection;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Extracts frame information from a StackTrace object.

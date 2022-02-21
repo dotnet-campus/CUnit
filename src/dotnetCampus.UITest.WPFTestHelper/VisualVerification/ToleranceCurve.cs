@@ -1,14 +1,14 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// This class will consist of just the set of data points loaded out of the Tolerance.xml. 

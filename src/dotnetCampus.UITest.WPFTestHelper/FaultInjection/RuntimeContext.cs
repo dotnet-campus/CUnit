@@ -5,7 +5,7 @@
 
 using System.Diagnostics;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Stores information about a faulted method.

@@ -4,13 +4,12 @@
 
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Threading;
-using Microsoft.Win32;
-using System.Globalization;
-using Microsoft.Test.FaultInjection.Constants;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     internal static class FaultRuleLoader
     {

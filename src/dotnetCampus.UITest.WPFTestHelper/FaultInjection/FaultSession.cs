@@ -9,10 +9,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using Microsoft.Test.FaultInjection.Constants;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Maintains information needed for injecting faults into a test application. 

@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.FaultInjection.Faults
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults
 {
     // Attribute class used by FaultInjector to distinguish normal fault and runtime fault
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]

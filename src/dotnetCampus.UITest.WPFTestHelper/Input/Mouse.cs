@@ -1,15 +1,13 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-﻿
+
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using System.Security;
-using System.Security.Permissions;
 
-namespace Microsoft.Test.Input
+namespace dotnetCampus.UITest.WPFTestHelper.Input
 {
     /// <summary>
     /// Exposes a simple interface to common mouse operations, allowing the user to simulate mouse input.

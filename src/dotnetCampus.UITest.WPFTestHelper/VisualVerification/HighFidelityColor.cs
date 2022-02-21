@@ -5,7 +5,7 @@
 
 using System.Drawing;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// Represents colors channels as a set of 0-1 floats for higher fidelity internal color processing.

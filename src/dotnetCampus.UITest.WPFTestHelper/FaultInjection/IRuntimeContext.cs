@@ -6,7 +6,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Defines the contract for information provided by the faulted method.

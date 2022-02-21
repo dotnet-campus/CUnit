@@ -3,10 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Globalization;
-using System.Reflection;
 
-namespace Microsoft.Test.ApplicationControl
+namespace dotnetCampus.UITest.WPFTestHelper.ApplicationControl
 {
     /// <summary>
     /// Factory for a WpfApplication implementation that AutomatedApplication

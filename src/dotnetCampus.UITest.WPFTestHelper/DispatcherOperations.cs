@@ -4,13 +4,11 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Threading;
 using System.Security;
 using System.Security.Permissions;
+using System.Windows.Threading;
 
-namespace Microsoft.Test
+namespace dotnetCampus.UITest.WPFTestHelper
 {
     /// <summary>
     /// Helper class for the WPF Dispatcher. This class provides simple and 

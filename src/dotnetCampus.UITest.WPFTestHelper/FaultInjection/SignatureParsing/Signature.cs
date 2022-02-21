@@ -5,11 +5,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Globalization;
-using Microsoft.Test.FaultInjection.Constants;
+using System.Text.RegularExpressions;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
 
-namespace Microsoft.Test.FaultInjection.SignatureParsing
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing
 {    
     internal static class Signature
     {

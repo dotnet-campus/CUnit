@@ -4,9 +4,9 @@
 
 
 using System;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection.Faults
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults
 {
     [Serializable(), RuntimeFault]
     internal sealed class ThrowExceptionRuntimeFault : IFault

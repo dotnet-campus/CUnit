@@ -3,11 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 
-using System;
 using System.IO;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     internal static class MethodFilterHelper
     {

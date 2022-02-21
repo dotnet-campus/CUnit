@@ -5,18 +5,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Reflection;
-using System.Threading;
 using System.IO;
+using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
 #if TESTBUILD_CLR20
 // These includes are for the different Assembly.LoadFrom() overload used to make CLR 2.0 CAS policy work
 using System.Security;
 using System.Security.Policy;
 #endif
-using Microsoft.Test.FaultInjection.Constants;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     internal static class Serializer
     {

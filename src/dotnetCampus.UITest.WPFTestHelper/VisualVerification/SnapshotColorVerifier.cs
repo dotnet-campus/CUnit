@@ -5,7 +5,7 @@
 
 using System.Drawing;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// Verifies that all pixels in a Snapshot are within tolerance range of ExpectedColor.

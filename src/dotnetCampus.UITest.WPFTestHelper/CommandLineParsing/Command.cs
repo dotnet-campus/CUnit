@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.CommandLineParsing
+namespace dotnetCampus.UITest.WPFTestHelper.CommandLineParsing
 {
     /// <summary>
     /// Provides a base class for the functionality that all commands must implement.

@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 
-namespace Microsoft.Test.CommandLineParsing
+namespace dotnetCampus.UITest.WPFTestHelper.CommandLineParsing
 {
     /// <summary>
     /// Converter that can convert from a string to a DirectoryInfo.

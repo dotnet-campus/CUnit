@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Defines the contract for a fault.

@@ -4,9 +4,9 @@
 
 
 using System;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection.Conditions
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Conditions
 {
     [Serializable()]
     internal sealed class TriggerOnNthCallBy : ICondition

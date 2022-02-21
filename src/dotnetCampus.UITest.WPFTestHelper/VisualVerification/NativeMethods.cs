@@ -7,7 +7,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// WIN32 RECT structure
@@ -29,7 +29,7 @@ namespace Microsoft.Test.VisualVerification
     /// <summary>
     /// RasterOperation used by GDI BitBlt and StretchBlt methods
     /// </summary>
-    [FlagsAttribute]
+    [Flags]
     internal enum RasterOperationCodeEnum
     {
         /// <summary/>
@@ -77,44 +77,44 @@ namespace Microsoft.Test.VisualVerification
 
         #region Gdi32
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static internal extern bool BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, Int32 RasterOpCode);
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         static internal extern IntPtr CreateCompatibleBitmap(IntPtr hdcSrc, int width, int height);
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         static internal extern IntPtr CreateCompatibleDC(IntPtr HDCSource);
 
         [DllImport(Gdi32Dll, SetLastError = true, CharSet = CharSet.Unicode)]
         static internal extern IntPtr CreateDC(string driverName, string deviceName, string reserved, IntPtr initData);
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static internal extern bool DeleteDC(IntPtr HDC);
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static internal extern bool DeleteObject(IntPtr hBMP);
 
-        [DllImportAttribute(Gdi32Dll, SetLastError = true)]
+        [DllImport(Gdi32Dll, SetLastError = true)]
         static internal extern IntPtr SelectObject(IntPtr HDC, IntPtr hgdiobj);
 
         #endregion
 
         #region User32
 
-        [DllImportAttribute(User32Dll)]
+        [DllImport(User32Dll)]
         static internal extern IntPtr GetDC(IntPtr hWnd);
 
-        [DllImportAttribute(User32Dll, SetLastError = true)]
+        [DllImport(User32Dll, SetLastError = true)]
         static internal extern bool GetClientRect(IntPtr HWND, out RECT rect);
 
-        [DllImportAttribute(User32Dll, SetLastError = true)]
+        [DllImport(User32Dll, SetLastError = true)]
         static internal extern bool GetWindowRect(IntPtr HWND, out RECT rect);
 
-        [DllImportAttribute(User32Dll)]
+        [DllImport(User32Dll)]
         static internal extern bool ReleaseDC(IntPtr HWND, IntPtr HDC);
 
         #endregion

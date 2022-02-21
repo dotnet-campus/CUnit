@@ -5,8 +5,7 @@
 using System;
 using System.Globalization;
 
-
-namespace Microsoft.Test.Text
+namespace dotnetCampus.UITest.WPFTestHelper.Text
 {
     /// <summary>
     /// Represents a Unicode range.<para/> 

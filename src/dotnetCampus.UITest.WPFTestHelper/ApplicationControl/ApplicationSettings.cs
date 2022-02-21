@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Test.ApplicationControl
+namespace dotnetCampus.UITest.WPFTestHelper.ApplicationControl
 {
     /// <summary>
     /// Provides configuration information for an <see cref="AutomatedApplication"/>.

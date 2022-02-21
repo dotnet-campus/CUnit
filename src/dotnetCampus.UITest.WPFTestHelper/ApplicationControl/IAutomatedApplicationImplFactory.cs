@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Test.ApplicationControl
+namespace dotnetCampus.UITest.WPFTestHelper.ApplicationControl
 {
     /// <summary>
     /// Defines the contract for creating an IAutomatedApplicationImpl instance.

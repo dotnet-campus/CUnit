@@ -4,9 +4,9 @@
 
 
 using System;
-using Microsoft.Test.FaultInjection.Faults;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     #region Public Members
 
@@ -44,8 +44,8 @@ namespace Microsoft.Test.FaultInjection
         /// A built-in fault which returns an object constructed according to the specified expression when triggered.
         /// </summary>
         /// <param name="returnValueExpression">A string in the format:
-        /// (int)3, (double)6.6, (bool)true, ‘Hello World’ which means "Hello World",
-        /// System.Exception(‘This is a fault’).
+        /// (int)3, (double)6.6, (bool)true, ‘Hello World?which means "Hello World",
+        /// System.Exception(‘This is a fault?.
         /// </param>
         
         public static IFault ReturnValueRuntimeFault(string returnValueExpression)
@@ -71,8 +71,8 @@ namespace Microsoft.Test.FaultInjection
         /// A built-in fault which throws an exception object constructed according to the specified expression when triggered.
         /// </summary>
         /// <param name="exceptionExpression">A string in the format:
-        /// System.Exception(‘This is a fault’),
-        /// CustomizedNameSpace.CustomizedException(‘Error Message’, (int)3, System.Exception(‘innerException’)).
+        /// System.Exception(‘This is a fault?,
+        /// CustomizedNameSpace.CustomizedException(‘Error Message? (int)3, System.Exception(‘innerException?).
         /// </param>
         public static IFault ThrowExceptionRuntimeFault(string exceptionExpression)
         {

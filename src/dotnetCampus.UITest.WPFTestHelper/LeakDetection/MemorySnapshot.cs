@@ -10,7 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Xml;
 
-namespace Microsoft.Test.LeakDetection
+namespace dotnetCampus.UITest.WPFTestHelper.LeakDetection
 {
     /// <summary>
     /// Represents a snapshot in time of the memory consumed by a specified OS process.
@@ -463,7 +463,7 @@ namespace Microsoft.Test.LeakDetection
         /// and the process can limit its ability to load libraries. For more information see the 
         /// <a href="http://msdn.microsoft.com/en-us/library/aa366589(VS.85).aspx">GlobalMemoryStatusEx</a> function 
         /// and the <a href="http://msdn.microsoft.com/en-us/library/aa366770(VS.85).aspx">MEMORYSTATUSEX</a> structure.
-        /// This metric is calculated as MEMORYSTATUSEX.ullTotalVirtual – MEMORYSTATUSEX.ullAvailVirtual.
+        /// This metric is calculated as MEMORYSTATUSEX.ullTotalVirtual ?MEMORYSTATUSEX.ullAvailVirtual.
         /// </summary>
         ///
         /// <remarks>

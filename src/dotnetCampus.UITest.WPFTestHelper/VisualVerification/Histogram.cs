@@ -4,14 +4,14 @@
 
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// The Histogram class represents a histogram curve, expressed in terms of frequency (proportion of total pixels) 

@@ -4,12 +4,12 @@
 
 
 using System;
-using Microsoft.Test.FaultInjection.Conditions;
-using Microsoft.Test.FaultInjection.Faults;
-using Microsoft.Test.FaultInjection.Constants;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Conditions;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Defines which method to fault, under what conditions the fault will occur, 

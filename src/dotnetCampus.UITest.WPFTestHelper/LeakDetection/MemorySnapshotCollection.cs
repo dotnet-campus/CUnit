@@ -3,15 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 
-using System.Collections.ObjectModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Xml;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Xml;
 
-namespace Microsoft.Test.LeakDetection
+namespace dotnetCampus.UITest.WPFTestHelper.LeakDetection
 {
     /// <summary>
     /// A collection of MemorySnapshots that can be serialized to an XML file.

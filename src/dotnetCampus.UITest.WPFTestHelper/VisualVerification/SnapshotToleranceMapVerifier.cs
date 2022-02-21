@@ -4,9 +4,8 @@
 
 
 using System;
-using System.Drawing;
 
-namespace Microsoft.Test.VisualVerification
+namespace dotnetCampus.UITest.WPFTestHelper.VisualVerification
 {
     /// <summary>
     /// Verifies that all pixels in a Snapshot are within the tolerance range, defined by the tolerance map.

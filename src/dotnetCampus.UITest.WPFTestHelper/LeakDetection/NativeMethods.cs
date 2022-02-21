@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Test.LeakDetection
+namespace dotnetCampus.UITest.WPFTestHelper.LeakDetection
 {
     internal static class NativeMethods
     {
@@ -71,16 +71,16 @@ namespace Microsoft.Test.LeakDetection
         public int PrivateUsage;
     }
 
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     internal class PSAPI_WORKING_SET_INFORMATION
     {
         public int NumberOfEntries;
 
-        [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
         public PSAPI_WORKING_SET_BLOCK[] WorkingSetInfo;
     }
 
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     internal struct BLOCK
     {
         public uint bitvector1;
@@ -96,13 +96,13 @@ namespace Microsoft.Test.LeakDetection
         }
     }
 
-    [StructLayoutAttribute(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Explicit)]
     internal struct PSAPI_WORKING_SET_BLOCK
     {
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+        [FieldOffset(0)]
         public uint Flags;
 
-        [FieldOffsetAttribute(0)]
+        [FieldOffset(0)]
         public BLOCK Block1;
     }
 }

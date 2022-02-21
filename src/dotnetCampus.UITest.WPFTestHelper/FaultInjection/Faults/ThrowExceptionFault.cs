@@ -4,9 +4,9 @@
 
 
 using System;
-using Microsoft.Test.FaultInjection.Constants;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
 
-namespace Microsoft.Test.FaultInjection.Faults
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults
 {
     [Serializable()]
     internal sealed class ThrowExceptionFault : IFault

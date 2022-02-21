@@ -6,8 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-
-namespace Microsoft.Test.Text
+namespace dotnetCampus.UITest.WPFTestHelper.Text
 {
     /// <summary>
     /// Collect data according to name and save to PropertyData list

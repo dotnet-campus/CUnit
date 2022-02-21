@@ -4,17 +4,13 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
-using System.Reflection;
-using System.Threading;
 using System.Globalization;
-using System.IO;
-using Microsoft.Test.FaultInjection.Constants;
-using Microsoft.Test.FaultInjection.SignatureParsing;
+using System.Reflection;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.Constants;
+using dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing;
 
-namespace Microsoft.Test.FaultInjection
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection
 {
     /// <summary>
     /// Calls the appropriate fault for a given faulted method.

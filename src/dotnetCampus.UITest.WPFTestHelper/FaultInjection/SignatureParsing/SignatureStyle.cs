@@ -3,9 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 
-using System;
-
-namespace Microsoft.Test.FaultInjection.SignatureParsing
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.SignatureParsing
 {
     internal enum SignatureStyle
     {

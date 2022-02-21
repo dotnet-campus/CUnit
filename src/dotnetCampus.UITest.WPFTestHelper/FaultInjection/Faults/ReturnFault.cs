@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Test.FaultInjection.Faults
+namespace dotnetCampus.UITest.WPFTestHelper.FaultInjection.Faults
 {
     [Serializable()]
     internal sealed class ReturnFault : IFault
