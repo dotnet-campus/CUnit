@@ -8,6 +8,11 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>source;dotnet;nuget;msbuild</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
+    <Copyright>Copyright (c) 2019-2022 dotnet职业技术学院</Copyright>
+    <RepositoryUrl>https://github.com/dotnet-campus/CUnit</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>

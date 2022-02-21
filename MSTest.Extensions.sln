@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.UITest.WPF", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.UITest.WPF.Demo", "demo\dotnetCampus.UITest.WPF.Demo\dotnetCampus.UITest.WPF.Demo.csproj", "{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.UITest.WPFTestHelper", "src\dotnetCampus.UITest.WPFTestHelper\dotnetCampus.UITest.WPFTestHelper.csproj", "{A5195542-3263-436B-8850-A9F4C1E36B2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5195542-3263-436B-8850-A9F4C1E36B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5195542-3263-436B-8850-A9F4C1E36B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5195542-3263-436B-8850-A9F4C1E36B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5195542-3263-436B-8850-A9F4C1E36B2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{7AB54453-67E4-46BC-A314-EBA72C082E7E} = {DA39C42F-B4EA-43F0-AB8C-40987B63F4D6}
 		{E62C4947-CD69-411D-8749-78C8B2C25ACE} = {1C4D72B5-A7C1-4AAE-A66F-4DDAC5979C28}
 		{F1D52FE3-2E23-4C7D-AA64-CAC204B4EBBF} = {DA39C42F-B4EA-43F0-AB8C-40987B63F4D6}
+		{A5195542-3263-436B-8850-A9F4C1E36B2B} = {1C4D72B5-A7C1-4AAE-A66F-4DDAC5979C28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {21BFBA8A-2901-4A78-A722-0DDA95D3773F}

@@ -74,3 +74,7 @@ There are many ways to contribute to MSTestEnhancer
 ## License
 
 MSTestEnhancer is licensed under the [MIT license](/LICENSE)
+
+## Thanks
+
+https://github.com/dotnet/wpf-test/
