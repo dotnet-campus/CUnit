@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
@@ -34,6 +35,7 @@ namespace MSTest.Extensions.Tests.Contracts
         }
 
         [ContractTestCase]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public void WithArguments_WithFormatString()
         {
             "If {0}, then {1}.".Test((string condition, string result) =>
@@ -43,6 +45,7 @@ namespace MSTest.Extensions.Tests.Contracts
         }
 
         [ContractTestCase]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public void WithArguments_WithPartialFormatString()
         {
             "If {0}, then something...".Test((string condition, string result) =>
@@ -52,6 +55,7 @@ namespace MSTest.Extensions.Tests.Contracts
         }
 
         [ContractTestCase]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public void WithArguments_WithoutFormatString()
         {
             "If something..., then something others...".Test((string condition, string result) =>

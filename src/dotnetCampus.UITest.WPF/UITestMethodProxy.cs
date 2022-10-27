@@ -22,7 +22,12 @@ namespace dotnetCampus.UITest.WPF
             {
                 var task = Application.Current.Dispatcher.Invoke(async () =>
                 {
-                    return await contractTestCase.ExecuteAsync();
+                    var result = await contractTestCase.ExecuteAsync()
+                        // 如果在执行过程，应用退出了，那在没有加上 ConfigureAwait 设置为 false 那将需要调度回 UI 线程，才能返回
+                        // 由于应用退出了，也就是 UI 线程不会调度的任务
+                        // 因此不会返回，单元测试将会卡住
+                        .ConfigureAwait(false);
+                    return result;
                 });
 
                 return task.Result;
