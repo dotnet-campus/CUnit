@@ -6,10 +6,7 @@
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>The UITest framework for WPF</Description>
-    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
-    <Copyright>Copyright (c) 2021 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <RepositoryUrl>https://github.com/dotnet-campus/CUnit</RepositoryUrl>
     <PackageTags>dotnet;nuget;msbuild;UITest;WPF;MSTest;TestFramework</PackageTags>
   </PropertyGroup>
 
