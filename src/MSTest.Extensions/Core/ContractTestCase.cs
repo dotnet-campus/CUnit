@@ -2,8 +2,10 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSTest.Extensions.Contracts;
 
 namespace MSTest.Extensions.Core
 {
@@ -124,8 +126,32 @@ namespace MSTest.Extensions.Core
                     // Execute the test case.
                     try
                     {
-                        await _testCase().ConfigureAwait(false);
-                        exception = null;
+                        if (ContractTestConfiguration.MustSTAThread &&
+                            Thread.CurrentThread.GetApartmentState() != ApartmentState.STA)
+                        {
+                            // 强行要求 STA 且当前运行非 STA 线程的情况，就需要进行切换线程
+                            // 这里是单元测试，就可以无视性能问题哈
+                            var thread = new Thread(() =>
+                            {
+                                try
+                                {
+                                    _testCase().Wait();
+                                }
+                                catch (Exception e)
+                                {
+                                    // 不能抛到后台线程去
+                                    exception = e;
+                                }
+                            });
+                            thread.SetApartmentState(ApartmentState.STA);
+                            thread.Start();
+                            thread.Join();
+                        }
+                        else
+                        {
+                            await _testCase().ConfigureAwait(false);
+                            exception = null;
+                        }
                     }
                     catch (AggregateException ex)
                     {
