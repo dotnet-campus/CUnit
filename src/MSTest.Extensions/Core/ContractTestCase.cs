@@ -108,7 +108,7 @@ namespace MSTest.Extensions.Core
             TimeSpan duration;
             string output;
             string error;
-            Exception exception;
+            Exception exception = null;
 
             using (var outputWriter = new ThreadSafeStringWriter(CultureInfo.InvariantCulture))
             {
