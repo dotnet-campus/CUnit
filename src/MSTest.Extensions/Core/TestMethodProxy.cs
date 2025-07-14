@@ -57,6 +57,25 @@ namespace MSTest.Extensions.Core
             return result;
         }
 
+        public async Task<TestResult> InvokeAsync(object[] arguments)
+        {
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
+
+            var result = await InvokeCoreAsync(testCase);
+            //TestMethodCleanup();
+            return result;
+        }
+
         [NotNull]
         [ItemNotNull]
         internal async Task<TestResult> InvokeAsync()

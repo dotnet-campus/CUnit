@@ -157,6 +157,12 @@ namespace MSTest.Extensions.CustomTestManagers
                 return new TestResult();
             }
 
+            public Task<TestResult> InvokeAsync(object[] arguments)
+            {
+                MethodInfo.Invoke(Obj, arguments);
+                return Task.FromResult(new TestResult());
+            }
+
             [NotNull]
             public Attribute[] GetAllAttributes(bool inherit)
             {
