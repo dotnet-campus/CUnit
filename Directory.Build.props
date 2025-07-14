@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <Import Project="build\Version.props" />
   <PropertyGroup>
     <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
@@ -8,6 +8,17 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>source;dotnet;nuget;msbuild</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/dotnet-campus/CUnit.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
+    <Copyright>Copyright (c) 2018-$([System.DateTime]::Now.ToString(`yyyy`)) dotnet职业技术学院</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <!-- 输出 pdb 文件 NuGet 包 -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+
+    <!-- 输出符号文件 -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,5 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\README.md" Link="README.md" Pack="True" PackagePath="\"/>
   </ItemGroup>
+
 </Project>
