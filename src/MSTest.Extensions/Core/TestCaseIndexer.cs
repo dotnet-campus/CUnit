@@ -94,18 +94,24 @@ namespace MSTest.Extensions.Core
         private static MethodInfo GetCurrentTestMethod()
         {
             var stackTrace = new StackTrace();
+            string methodName = string.Empty;
             for (var i = 0; i < stackTrace.FrameCount; i++)
             {
                 var method = stackTrace.GetFrame(i).GetMethod();
-                if (method.GetCustomAttribute<TestMethodAttribute>() != null)
+                 methodName = method.Name;
+                 Log(methodName);
+                if (method.GetCustomAttribute<TestMethodAttribute>() != null ||
+                    method.GetCustomAttribute<ContractTestCaseAttribute>() != null)
                 {
-                    return (MethodInfo) method;
+                    return (MethodInfo)method;
                 }
             }
 
             throw new InvalidOperationException(
                 "There is no unit test method in the current stack trace. " +
-                "This method should only be called directly or indirectly from the unit test method.");
+                "This method should only be called directly or indirectly from the unit test method."+ methodName);
         }
+
+        private static void Log(string message) => Trace.WriteLine(message);
     }
 }
