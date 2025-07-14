@@ -1,13 +1,16 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using MSTest.Extensions.Core;
+using MSTest.Extensions.Utils;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MSTest.Extensions.Core;
-using MSTest.Extensions.Utils;
 
 // ## How it works?
 // 
@@ -80,12 +83,9 @@ namespace MSTest.Extensions.Contracts
             Contract.EndContractBlock();
 
             // Collect all test cases from the target unit test method.
-            Collect(methodInfo);
+            var cases = Collect(methodInfo);
 
-            var cases = ContractTest.Method[methodInfo];
-            VerifyContracts(cases);
-
-            return Enumerable.Range(0, cases.Count).Select(x => (object[]) null);
+            return cases.Select(t => new object[] { t });
         }
 
         /// <summary>
@@ -96,9 +96,13 @@ namespace MSTest.Extensions.Contracts
         /// <param name="data">The parameter list which was returned by <see cref="GetData"/>.</param>
         /// <returns>The display name of this test case.</returns>
         [NotNull]
-        public string GetDisplayName([NotNull] MethodInfo methodInfo, [NotNull] object[] data)
+        public string GetDisplayName([NotNull] MethodInfo methodInfo, [CanBeNull] object[] data)
         {
-            return ContractTest.Method[methodInfo][_testCaseIndex++].DisplayName;
+            Contract.Requires(methodInfo != null, "The method must not be null.");
+
+            return data is not null && data.Length > 0 && data[0] is ITestCase testCase
+                ? testCase.DisplayName
+                : methodInfo.Name;
         }
 
         #endregion
@@ -107,14 +111,18 @@ namespace MSTest.Extensions.Contracts
 
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-        private static void Collect([NotNull] MethodInfo methodInfo)
+        [NotNull]
+        private static IReadOnlyList<ITestCase> Collect([NotNull] MethodInfo methodInfo)
         {
             var type = methodInfo.DeclaringType;
             Contract.Requires(type != null,
                 "The method must be declared in a type. If this exception happened, there might be a bug in MSTest v2.");
 
             var testInstance = Activator.CreateInstance(type);
-            var testCaseList = ContractTest.Method[methodInfo];
+
+          
+            var testCaseList = new List<ITestCase>();
+            ContractTest.Method.SetCurrentCollection(methodInfo, testCaseList);
             try
             {
                 // Invoke target test method to collect all test cases.
@@ -155,13 +163,16 @@ Try to call Test extension method to collect one.
 
 If you only need to write a normal test method, use `TestMethodAttribute` instead of `ContractTestCaseAttribute`."));
             }
+
+            VerifyContracts(testCaseList);
+            return testCaseList;
         }
 
         /// <summary>
         /// Find out the test cases which have the same contract string, add a special exception to it.
         /// </summary>
         /// <param name="cases">The test cases of a single test method.</param>
-        private void VerifyContracts([NotNull] IList<ITestCase> cases)
+        private static void VerifyContracts([NotNull] List<ITestCase> cases)
         {
             var caseContractSet = new HashSet<string>();
             var duplicatedCases = new HashSet<ITestCase>();
@@ -199,13 +210,6 @@ Two or more test cases have the same contract string which is ""{contract}"".
         }
 
         #endregion
-
-        /// <summary>
-        /// Gets or increment the current test case index.
-        /// <see cref="Execute"/> and <see cref="GetDisplayName"/> should increment it separately
-        /// because they are not in the same instance.
-        /// </summary>
-        private int _testCaseIndex;
 
         /// <summary>
         /// the proxy of ITestMethod(TestMethodInfo in fact)

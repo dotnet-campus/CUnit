@@ -25,7 +25,6 @@ namespace MSTest.Extensions.Core
             }
 
             _realSubject = testMethod;
-            _testCaseIndex = 0;
             ReflectionMemberInit();
         }
 
@@ -39,8 +38,20 @@ namespace MSTest.Extensions.Core
         public TestResult Invoke(object[] arguments)
         {
             TestMethodInitialize();
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            var testCase = testCases[_testCaseIndex++];
+            //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            //var testCase = testCases[_testCaseIndex++];
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
+
             var result = InvokeCore(testCase);
             TestMethodCleanup();
             return result;
@@ -51,8 +62,19 @@ namespace MSTest.Extensions.Core
         internal async Task<TestResult> InvokeAsync()
         {
             TestMethodInitialize();
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            var testCase = testCases[_testCaseIndex++];
+            //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            //var testCase = testCases[_testCaseIndex++];
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
             var result = await InvokeCoreAsync(testCase).ConfigureAwait(false);
             TestMethodCleanup();
             return result;
@@ -142,8 +164,9 @@ namespace MSTest.Extensions.Core
             ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue,
                 new Queue<MethodInfo>());
             ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            testCases.Clear();
+            // 现在改成直接传递 TestCase 作为参数，不需要再清理列表了，不会相互干扰
+            //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            //testCases.Clear();
             _realSubject.Invoke(null);
         }
 
@@ -190,6 +213,5 @@ namespace MSTest.Extensions.Core
 
         private MethodInfo TestCleanupMethod { get; set; }
         private readonly ITestMethod _realSubject;
-        private int _testCaseIndex;
     }
 }

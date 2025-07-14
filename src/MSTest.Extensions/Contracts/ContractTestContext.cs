@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -97,7 +97,7 @@ namespace MSTest.Extensions.Contracts
                 }
 
                 // Add an argument test case to the test case list.
-                ContractTest.Method.Current.Add(new ContractTestCase(contract, () => _testCase(t)));
+                ContractTest.Method.AddToCurrent(new ContractTestCase(contract, () => _testCase(t)));
             }
 
             return this;
@@ -120,7 +120,7 @@ namespace MSTest.Extensions.Contracts
         [NotNull, PublicAPI]
         public ContractTestContext<T> WithArguments(T t)
         {
-            ContractTest.Method.Current.Add(new ContractTestCase(
+            ContractTest.Method.AddToCurrent(new ContractTestCase(
                 string.Format(_contract, t), () => _testCase(t)));
             return this;
         }

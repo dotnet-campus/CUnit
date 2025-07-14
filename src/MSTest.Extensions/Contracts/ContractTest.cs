@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using MSTest.Extensions.Core;
@@ -24,7 +24,7 @@ namespace MSTest.Extensions.Contracts
             if (testCase == null) throw new ArgumentNullException(nameof(testCase));
             Contract.EndContractBlock();
 
-            Method.Current.Add(new ContractTestCase(contract, testCase));
+            Method.AddToCurrent(new ContractTestCase(contract, testCase));
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace MSTest.Extensions.Contracts
             if (testCase == null) throw new ArgumentNullException(nameof(testCase));
             Contract.EndContractBlock();
 
-            Method.Current.Add(new ContractTestCase(contract, testCase));
+            Method.AddToCurrent(new ContractTestCase(contract, testCase));
         }
 
         #endregion

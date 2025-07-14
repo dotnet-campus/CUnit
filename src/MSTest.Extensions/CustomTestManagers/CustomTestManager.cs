@@ -56,7 +56,10 @@ namespace MSTest.Extensions.CustomTestManagers
 
                     try
                     {
-                        var result = await contractTestCaseAttribute.ExecuteAsync(new FakeTestMethod(methodInfo))
+                        var result = await contractTestCaseAttribute.ExecuteAsync(new FakeTestMethod(methodInfo)
+                            {
+                                Arguments = data,
+                            })
                             // 在 UI 中进行测试，期望每次都是返回到相同的线程
                             .ConfigureAwait(true);
                         duration += result.Duration;
