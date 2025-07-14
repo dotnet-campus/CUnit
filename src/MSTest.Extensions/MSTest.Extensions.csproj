@@ -9,6 +9,8 @@
 
     <SuppressTfmSupportBuildWarnings>false</SuppressTfmSupportBuildWarnings>
  
+    <!--必须明确指定 IsPackable 为 true，否则无法生成 NuGet 包-->
+    <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
