@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.0;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.0;net5.0;net6.0;net8.0;net9.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageId>MSTestEnhancer</PackageId>
     <Authors>dotnet-campus</Authors>
-    <RepositoryUrl>https://github.com/dotnet-campus/CUnit.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+
+    <SuppressTfmSupportBuildWarnings>false</SuppressTfmSupportBuildWarnings>
+ 
+    <!--必须明确指定 IsPackable 为 true，否则无法生成 NuGet 包-->
+    <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/dotnet-campus/CUnit</PackageProjectUrl>
-    <Copyright>Copyright (c) 2018-2023 dotnet职业技术学院</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>MSTestEnhancer helps you to write unit tests without naming any method. You can write method contract descriptions instead of writing confusing test method name when writing unit tests.</Description>
     <PackageReleaseNotes>Add some assersion extensions.</PackageReleaseNotes>
@@ -24,7 +25,8 @@
   <ItemGroup>
     <PackageReference Include="dotnetCampus.GenericGenerator" Version="0.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" PrivateAssets="All" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.1" Condition="'$(TargetFramework)'=='net45'"/>
+    <PackageReference Include="MSTest" Version="3.9.3" Condition="'$(TargetFramework)'!='net45'"/>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 

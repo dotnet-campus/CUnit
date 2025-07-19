@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
@@ -129,8 +129,8 @@ namespace MSTest.Extensions.Core
                         if (ContractTestConfiguration.MustSTAThread &&
                             Thread.CurrentThread.GetApartmentState() != ApartmentState.STA)
                         {
-                            // «ø––“™«Û STA «“µ±«∞‘À––∑« STA œﬂ≥Ãµƒ«Èøˆ£¨æÕ–Ë“™Ω¯––«–ªªœﬂ≥Ã
-                            // ’‚¿Ô «µ•‘™≤‚ ‘£¨æÕø…“‘Œﬁ ”–‘ƒ‹Œ Ã‚π˛
+                            // Âº∫Ë°åË¶ÅÊ±Ç STA ‰∏îÂΩìÂâçËøêË°åÈùû STA Á∫øÁ®ãÁöÑÊÉÖÂÜµÔºåÂ∞±ÈúÄË¶ÅËøõË°åÂàáÊç¢Á∫øÁ®ã
+                            // ËøôÈáåÊòØÂçïÂÖÉÊµãËØïÔºåÂ∞±ÂèØ‰ª•Êó†ËßÜÊÄßËÉΩÈóÆÈ¢òÂìà
                             var thread = new Thread(() =>
                             {
                                 try
@@ -139,7 +139,7 @@ namespace MSTest.Extensions.Core
                                 }
                                 catch (Exception e)
                                 {
-                                    // ≤ªƒ‹≈◊µΩ∫ÛÃ®œﬂ≥Ã»•
+                                    // ‰∏çËÉΩÊäõÂà∞ÂêéÂè∞Á∫øÁ®ãÂéª
                                     exception = e;
                                 }
                             });
@@ -155,7 +155,7 @@ namespace MSTest.Extensions.Core
                     }
                     catch (AggregateException ex)
                     {
-                        // If this test case is an async method, extract the inner excetion.
+                        // If this test case is an async method, extract the inner exception.
                         exception = ex.InnerExceptions.Count == 1 ? ex.InnerException : ex;
                     }
                     catch (Exception ex)

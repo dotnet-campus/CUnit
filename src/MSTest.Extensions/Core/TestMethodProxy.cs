@@ -25,8 +25,7 @@ namespace MSTest.Extensions.Core
             }
 
             _realSubject = testMethod;
-            _testCaseIndex = 0;
-            ReflectionMemberInit();
+            //ReflectionMemberInit();
         }
 
         /// <summary>
@@ -38,11 +37,42 @@ namespace MSTest.Extensions.Core
         [NotNull]
         public TestResult Invoke(object[] arguments)
         {
-            TestMethodInitialize();
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            var testCase = testCases[_testCaseIndex++];
+            //TestMethodInitialize();
+            //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            //var testCase = testCases[_testCaseIndex++];
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
+
             var result = InvokeCore(testCase);
-            TestMethodCleanup();
+            //TestMethodCleanup();
+            return result;
+        }
+
+        public async Task<TestResult> InvokeAsync(object[] arguments)
+        {
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
+
+            var result = await InvokeCoreAsync(testCase);
+            //TestMethodCleanup();
             return result;
         }
 
@@ -50,11 +80,22 @@ namespace MSTest.Extensions.Core
         [ItemNotNull]
         internal async Task<TestResult> InvokeAsync()
         {
-            TestMethodInitialize();
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            var testCase = testCases[_testCaseIndex++];
+            //TestMethodInitialize();
+            //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+            //var testCase = testCases[_testCaseIndex++];
+            ITestCase testCase = _realSubject.Arguments != null && _realSubject.Arguments.Length > 0
+                ? _realSubject.Arguments[0] as ITestCase
+                : null;
+            if (testCase is null)
+            {
+                return new TestResult()
+                {
+                    Outcome = UnitTestOutcome.NotRunnable,
+                    LogError = "Can not find a valid test case in the arguments.",
+                };
+            }
             var result = await InvokeCoreAsync(testCase).ConfigureAwait(false);
-            TestMethodCleanup();
+            //TestMethodCleanup();
             return result;
         }
 
@@ -134,62 +175,62 @@ namespace MSTest.Extensions.Core
         public MethodInfo MethodInfo => _realSubject.MethodInfo;
 
 
-        /// <summary>
-        /// extract the test TestMethodInitialize of _realSubject and run
-        /// </summary>
-        private void TestMethodInitialize()
-        {
-            ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue,
-                new Queue<MethodInfo>());
-            ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
-            var testCases = ContractTest.Method[_realSubject.MethodInfo];
-            testCases.Clear();
-            _realSubject.Invoke(null);
-        }
+        ///// <summary>
+        ///// extract the test TestMethodInitialize of _realSubject and run
+        ///// </summary>
+        //private void TestMethodInitialize()
+        //{
+        //    ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue,
+        //        new Queue<MethodInfo>());
+        //    ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, null);
+        //    // 现在改成直接传递 TestCase 作为参数，不需要再清理列表了，不会相互干扰
+        //    //var testCases = ContractTest.Method[_realSubject.MethodInfo];
+        //    //testCases.Clear();
+        //    _realSubject.Invoke(null);
+        //}
 
-        /// <summary>
-        /// extract the test TestMethodCleanup of _realSubject and run
-        /// </summary>
-        private void TestMethodCleanup()
-        {
-            ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue,
-                BaseTestCleanupMethodsQueue);
-            ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, TestCleanupMethod);
-            ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue,
-                new Queue<MethodInfo>());
-            ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
-            _realSubject.Invoke(null);
-            ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue,
-                BaseTestInitializeMethodsQueue);
-            ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, TestInitializeMethod);
-        }
+        ///// <summary>
+        ///// extract the test TestMethodCleanup of _realSubject and run
+        ///// </summary>
+        //private void TestMethodCleanup()
+        //{
+        //    ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue,
+        //        BaseTestCleanupMethodsQueue);
+        //    ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod, TestCleanupMethod);
+        //    ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue,
+        //        new Queue<MethodInfo>());
+        //    ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, null);
+        //    _realSubject.Invoke(null);
+        //    ClassInfo.SetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue,
+        //        BaseTestInitializeMethodsQueue);
+        //    ClassInfo.SetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod, TestInitializeMethod);
+        //}
 
-        /// <summary>
-        /// get the nonpublic memeber value of _realsubject var Reflection
-        /// </summary>
-        private void ReflectionMemberInit()
-        {
-            ClassInfo = _realSubject.GetProperty(MSTestMemberName.TestMethodInfoPropertyParent);
-            TestCleanupMethod = (MethodInfo)ClassInfo
-                .GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
-            TestInitializeMethod = (MethodInfo)ClassInfo
-                .GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
-            BaseTestInitializeMethodsQueue = (Queue<MethodInfo>)ClassInfo
-                .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
-            BaseTestCleanupMethodsQueue = (Queue<MethodInfo>)ClassInfo
-                .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
-        }
+        ///// <summary>
+        ///// get the nonpublic memeber value of _realsubject var Reflection
+        ///// </summary>
+        //private void ReflectionMemberInit()
+        //{
+        //    ClassInfo = _realSubject.GetProperty(MSTestMemberName.TestMethodInfoPropertyParent);
+        //    TestCleanupMethod = (MethodInfo)ClassInfo
+        //        .GetField(MSTestMemberName.TestClassInfoFieldTestCleanupMethod);
+        //    TestInitializeMethod = (MethodInfo)ClassInfo
+        //        .GetField(MSTestMemberName.TestClassInfoFieldTestInitializeMethod);
+        //    BaseTestInitializeMethodsQueue = (Queue<MethodInfo>)ClassInfo
+        //        .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestInitializeMethodsQueue);
+        //    BaseTestCleanupMethodsQueue = (Queue<MethodInfo>)ClassInfo
+        //        .GetProperty(MSTestMemberName.TestClassInfoPropertyBaseTestCleanupMethodsQueue);
+        //}
 
-        private object ClassInfo { get; set; }
+        //private object ClassInfo { get; set; }
 
-        private Queue<MethodInfo> BaseTestInitializeMethodsQueue { get; set; }
+        //private Queue<MethodInfo> BaseTestInitializeMethodsQueue { get; set; }
 
-        private Queue<MethodInfo> BaseTestCleanupMethodsQueue { get; set; }
+        //private Queue<MethodInfo> BaseTestCleanupMethodsQueue { get; set; }
 
-        private MethodInfo TestInitializeMethod { get; set; }
+        //private MethodInfo TestInitializeMethod { get; set; }
 
-        private MethodInfo TestCleanupMethod { get; set; }
+        //private MethodInfo TestCleanupMethod { get; set; }
         private readonly ITestMethod _realSubject;
-        private int _testCaseIndex;
     }
 }

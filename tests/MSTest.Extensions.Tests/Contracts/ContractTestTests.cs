@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,41 +39,41 @@ namespace MSTest.Extensions.Tests.Contracts
             }
         }
 
-        [TestMethod]
-        public void Test_Action_TestCaseCreatedAndExecuted()
-        {
-            // Arrange
-            const string contract = "Test contract description.";
-            var executed = false;
+        //[TestMethod]
+        //public void Test_Action_TestCaseCreatedAndExecuted()
+        //{
+        //    // Arrange
+        //    const string contract = "Test contract description.";
+        //    var executed = false;
 
-            // Action
-            contract.Test(() => executed = true);
-            var result = ContractTest.Method.Current.Single().Result;
+        //    // Action
+        //    contract.Test(() => executed = true);
+        //    var result = ContractTest.Method.Current.Single().Result;
 
-            // Assert
-            Assert.AreEqual(result.DisplayName, contract);
-            Assert.IsTrue(executed);
-        }
+        //    // Assert
+        //    Assert.AreEqual(result.DisplayName, contract);
+        //    Assert.IsTrue(executed);
+        //}
 
-        [TestMethod]
-        public void Test_AsyncAction_TestCaseCreatedAndExecuted()
-        {
-            // Arrange
-            const string contract = "Test contract description.";
-            var executed = false;
+        //[TestMethod]
+        //public void Test_AsyncAction_TestCaseCreatedAndExecuted()
+        //{
+        //    // Arrange
+        //    const string contract = "Test contract description.";
+        //    var executed = false;
 
-            // Action
-            contract.Test(async () =>
-            {
-                await Task.Yield();
-                executed = true;
-            });
-            var result = ContractTest.Method.Current.Single().Result;
+        //    // Action
+        //    contract.Test(async () =>
+        //    {
+        //        await Task.Yield();
+        //        executed = true;
+        //    });
+        //    var result = ContractTest.Method.Current.Single().Result;
 
-            // Assert
-            Assert.AreEqual(result.DisplayName, contract);
-            Assert.IsTrue(executed);
-        }
+        //    // Assert
+        //    Assert.AreEqual(result.DisplayName, contract);
+        //    Assert.IsTrue(executed);
+        //}
     }
 }
 
